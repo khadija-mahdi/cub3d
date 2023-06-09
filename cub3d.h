@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 09:57:18 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/09 15:17:02 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/09 15:19:43 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,6 @@ typedef struct s_map
 	int				height;	
 }				t_map;
 
-char	*get_next_line(int fd);
-char	*ft_strchr(const char *s, int c);
-int		ft_strlen(char *s);
-char	*ft_strjoin(char *s1, char *s2);
-void	ft_bzero(void *s, size_t n);
-void	*ft_calloc(size_t count, size_t size);
 void	rey_casting(t_map *map);
 
 #endif
