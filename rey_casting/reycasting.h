@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:28:36 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/09 14:00:35 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/09 15:16:57 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_data
 void	free_list(char **list);
 void	exit_msg(char *msg, int status);
 int		exit_program(int key_code);
-void	rey_casting(char *map);
 int		exit_esc(int key_code);
 
 #endif

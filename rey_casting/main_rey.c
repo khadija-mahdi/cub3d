@@ -6,56 +6,13 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:26:27 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/09 14:01:18 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/09 15:12:51 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "reycasting.h"
 
-void	read_map(t_data *data, char *s)
-{
-	int	fd;
-	int	index;
-
-	index = 0;
-	fd = open(s, O_RDONLY);
-	while (1)
-	{
-		data->map[index] = get_next_line(fd);
-		if (data->map[index] == NULL)
-			break ;
-		index++;
-	}
-	close(fd);
-}
-
-t_data	*init_data(t_data *data, char *s)
-{
-	char	*line;
-	int		fd;
-
-	data = malloc(sizeof(t_data));
-	data->height = 0;
-	data->width = 0;
-	fd = open(s, O_RDONLY);
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (data->height == 0 && line == NULL)
-			exit_msg("ERROR : \n map !! \n", 1);
-		if (line == NULL)
-			break ;
-		data->width = ft_strlen(line);
-		data->height++;
-		free(line);
-	}
-	data->map = malloc((data->height + 1) * sizeof(char *));
-	read_map(data, s);
-	close(fd);
-	return (data);
-}
-
-void	rey_casting(char *map)
+void	rey_casting(t_map *map)
 {
 	t_data	*data;
 
