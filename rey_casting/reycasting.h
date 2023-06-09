@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:28:36 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/09 15:16:57 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/09 15:30:26 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ typedef struct s_data
 
 }				t_data;
 
+char	*get_next_line(int fd);
+char	*ft_strchr(const char *s, int c);
+int		ft_strlen(char *s);
+char	*ft_strjoin(char *s1, char *s2);
 void	free_list(char **list);
 void	exit_msg(char *msg, int status);
 int		exit_program(int key_code);
