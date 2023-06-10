@@ -6,7 +6,7 @@
 #    By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 02:03:16 by moel-asr          #+#    #+#              #
-#    Updated: 2023/06/09 15:25:50 by kmahdi           ###   ########.fr        #
+#    Updated: 2023/06/10 15:24:17 by kmahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ SRC = main.c\
 	./rey_casting/get_next_line/get_next_line_utils.c\
 	./rey_casting/main_rey.c\
 	./rey_casting/utils.c\
+	./rey_casting/draw.c\
+	./rey_casting/2d_map.c\
 
 OBJ_DIR = files_objects
 
