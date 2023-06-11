@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 09:57:18 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/10 16:49:10 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/11 10:56:09 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <stdio.h>
+#include <math.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 2
@@ -28,8 +29,10 @@
 typedef struct s_map
 {
 	char			**map;
-	int				width; // x
-	int				height;	// y
+	int				width;
+	int				height;
+	int				x;
+	int				y;
 }				t_map;
 
 void	rey_casting(t_map *map, char *argv);

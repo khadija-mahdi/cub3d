@@ -6,7 +6,7 @@
 #    By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 02:03:16 by moel-asr          #+#    #+#              #
-#    Updated: 2023/06/10 15:24:17 by kmahdi           ###   ########.fr        #
+#    Updated: 2023/06/11 07:18:18 by kmahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ SRC = main.c\
 	./rey_casting/utils.c\
 	./rey_casting/draw.c\
 	./rey_casting/2d_map.c\
-
+	./rey_casting/init.c\
+	./rey_casting/init_map.c\
+	
 OBJ_DIR = files_objects
 
 OBJ= $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC))

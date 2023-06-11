@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:59:00 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/10 18:53:51 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/11 13:24:17 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ int	exit_program(int key_code)
 	return (0);
 }
 
-void rendring(t_data *data)
+void render_player(t_data *data)
 {
 	mlx_destroy_image(data->mlx_ptr , data->img->img_ptr);
 	data->img->img_ptr = mlx_new_image(data->mlx_ptr,WIDTH, HEIGHT);	
     data->img->addr = mlx_get_data_addr(data->img->img_ptr, &data->img->bits_per_pixel, &data->img->line_length, &data->img->endian);
-	draw_2d_map(data->img, data);
+	draw_2d_map(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img_ptr, 0, 0);
 }
 
@@ -48,26 +48,13 @@ int	key_code(int key_code, t_data *data)
 	if (key_code == ESC)
 		exit_msg("Exit the program with the 'ESC'  button !", 0);
 	if (key_code == UP)
-	{
-		data->player_x -= 1;
-		printf("x = %d y = %d\n", data->player_x, data->player_y);
-		rendring(data);
-	}
+		data->player_x -= 1 + PLAYER_SPEED;
 	else if (key_code == DOWN)
-	{
-		data->player_x += 1;
-		rendring(data);
-	}
+		data->player_x += 1 + PLAYER_SPEED;
 	else if (key_code == RIGHT)
-	{
-		data->player_y += 1;
-		rendring(data);
-		
-	}
+		data->player_y += 1 + PLAYER_SPEED;
 	else if (key_code == LEFT)
-	{
-		data->player_y -= 1;
-		rendring(data);
-	}
+		data->player_y -= 1 + PLAYER_SPEED;
+	render_player(data);
 	return (0);
 }
