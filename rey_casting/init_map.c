@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 07:09:50 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/11 07:39:19 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/12 10:31:00 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	init_pos(t_data *data)
 		{
 			if (data->map->map[j][i] == 'N' || data->map->map[j][i] == 'S' || data->map->map[j][i] == 'E' || data->map->map[j][i] == 'W')
 			{
-				data->map->x = j;
-				data->map->y = i;
+				data->map->x = i;
+				data->map->y = j;
 			}
 			i++;
 		}

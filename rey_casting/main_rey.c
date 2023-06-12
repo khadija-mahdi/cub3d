@@ -12,19 +12,21 @@
 
 #include "reycasting.h"
 
+void	game_running(t_data *data)
+{
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img_ptr, 0, 0);
+	mlx_hook(data->win_ptr, 2, 0, key_code, data);
+	mlx_hook(data->win_ptr, 17, 0, exit_program, data);
+	mlx_loop(data->mlx_ptr);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+}
 void	rey_casting(struct s_map *map, char *argv)
 {
 	t_data	*data;
 
 	map = init_map(map, argv);
 	data = init_data(data, map);
-	data->player_rotation = 0.0f;
-	data->player_speed = 5.0f;
 	draw_2d_map(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img_ptr, 0, 0);
-	mlx_hook(data->win_ptr, 2, 0, key_code, data);
-	mlx_hook(data->win_ptr, 17, 0, exit_program, data);
-	mlx_loop(data->mlx_ptr);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	game_running(data);
 }
 
