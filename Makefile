@@ -6,21 +6,25 @@
 #    By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 02:03:16 by moel-asr          #+#    #+#              #
-#    Updated: 2023/06/11 07:18:18 by kmahdi           ###   ########.fr        #
+#    Updated: 2023/06/15 19:00:36 by kmahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
 SRC = main.c\
-	./rey_casting/get_next_line/get_next_line.c\
-	./rey_casting/get_next_line/get_next_line_utils.c\
 	./rey_casting/main_rey.c\
-	./rey_casting/utils.c\
 	./rey_casting/draw.c\
 	./rey_casting/2d_map.c\
 	./rey_casting/init.c\
-	./rey_casting/init_map.c\
+	./get_next_line/get_next_line.c \
+	./parser/parse_colors.c \
+	./parser/parse_map.c \
+	./parser/parse_path_and_map.c \
+	./parser/parse_texture_utils.c \
+	./parser/parse_texture.c \
+	./parser/parser_utils.c \
+	./rey_casting/utils.c
 	
 OBJ_DIR = files_objects
 
@@ -43,14 +47,17 @@ $(OBJ_DIR)/%.o: %.c
 	@$(CC) ${CFLAGS} -c $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(MLX) $(OBJ) $(DIB) -o $(NAME)
+	make -C minilibft
+	$(CC) $(CFLAGS) minilibft/minilibft.a $(MLX) $(OBJ) $(DIB) -o $(NAME)
 
 clean:
 	$(RM) $(OBJ)
 	@$(RM) -rf $(OBJ_DIR)
+	make clean -C minilibft
 
 fclean: clean
 	$(RM) $(NAME)
 	$(RM) -rf $(OBJ_DIR)
+	make fclean -C minilibft
 
 re: fclean all

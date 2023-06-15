@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 09:57:18 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/12 16:16:28 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/15 18:50:25 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,9 @@
 # include <stdio.h>
 #include <math.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2
-# endif
-
-typedef struct s_map
-{
-	char			**map;
-	int				width;
-	int				height;
-	int				x;
-	int				y;
-}				t_map;
-
-void	rey_casting(t_map *map, char *argv);
+# include "minilibft/minilibft.h"
+# include "get_next_line/get_next_line.h"
+#include "./parser/parser.h"
+#include "./rey_casting/reycasting.h"
 
 #endif

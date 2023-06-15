@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:48:47 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/15 17:42:23 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/15 18:22:48 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,23 @@ int	key_code(int key_code, t_data *data)
 		data->player.rotation_angle += ROTATION_SPEED;
 	if (key_code == W_UP)
 	{
-		data->player.player_y -= sin(data->player.rotation_angle) / MOVE_SPEED;
-		data->player.player_x -= cos(data->player.rotation_angle) / MOVE_SPEED;
+		data->player.player_y -= sin(data->player.rotation_angle) * MOVE_SPEED;
+		data->player.player_x -= cos(data->player.rotation_angle) * MOVE_SPEED;
 	}
 	if (key_code == S_DOWN)
 	{
-		data->player.player_y += sin(data->player.rotation_angle) / MOVE_SPEED;
-		data->player.player_x += cos(data->player.rotation_angle) / MOVE_SPEED;
+		data->player.player_y += sin(data->player.rotation_angle) * MOVE_SPEED;
+		data->player.player_x += cos(data->player.rotation_angle) * MOVE_SPEED;
 	}
 	if (key_code == A_LEFT)
 	{
-		data->player.player_y += sin(data->player.rotation_angle + M_PI / 2) / MOVE_SPEED;
-		data->player.player_x += cos(data->player.rotation_angle  + M_PI / 2) / MOVE_SPEED;
+		data->player.player_y += sin(data->player.rotation_angle + M_PI / 2) *  MOVE_SPEED;
+		data->player.player_x += cos(data->player.rotation_angle  + M_PI / 2) * MOVE_SPEED;
 	}
 	if (key_code == D_RIGHT)
 	{
-		data->player.player_y -= sin(data->player.rotation_angle  + M_PI / 2) / MOVE_SPEED;
-		data->player.player_x -= cos(data->player.rotation_angle + M_PI / 2) / MOVE_SPEED;
+		data->player.player_y -= sin(data->player.rotation_angle  + M_PI / 2) * MOVE_SPEED;
+		data->player.player_x -= cos(data->player.rotation_angle + M_PI / 2) * MOVE_SPEED;
 
 	}
 	render_player(data);

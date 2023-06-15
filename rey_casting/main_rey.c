@@ -20,11 +20,10 @@ void	game_running(t_data *data)
 	mlx_loop(data->mlx_ptr);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 }
-void	rey_casting(struct s_map *map, char *argv)
+void	rey_casting(struct s_map_info *map)
 {
 	t_data	*data;
 
-	map = init_map(map, argv);
 	data = init_data(data, map);
 	draw_2d_map(data);
 	game_running(data);
