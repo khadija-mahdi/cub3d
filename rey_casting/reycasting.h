@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:28:36 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/12 17:09:42 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/15 17:19:29 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define REYCASTING_H
 
 # include "../cub3d.h"
+
+# define PI 3.14159265359
 
 # define TILE_SIZE 64
 # define PLAYER_SIZE 8 
@@ -33,12 +35,21 @@
 # define A_LEFT 0
 # define D_RIGHT 2
 
+#define MOVE_SPEED 0.1
+#define ROTATION_SPEED 0.5
+
+
 typedef struct s_player {
-	int				player_x;
-	int				player_y;
-	float 			player_rotation;
-	float			rotation_angle;
-	float			player_speed;
+	double			player_x;
+	double				player_y;
+	double			player_rotation;
+	double			rotation_angle;
+	double			player_speed;
+	double			player_direction;
+	double			speed_movement;
+	double			speed_rotation;
+	double			dpx;
+	double			dpy;
 	
 }				t_player;
 

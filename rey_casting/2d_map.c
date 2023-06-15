@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:10:35 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/12 17:52:54 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/15 17:45:36 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	draw_wall(t_img *img, int i, int j, int clr)
 	int	y;
 	int x;
 
-	x_start = i * TILE_SIZE;
-    y_start = j * TILE_SIZE;
+	x_start = i * TILE_SIZE - 1;
+    y_start = j * TILE_SIZE - 1;
 	y = y_start;
-    while (y < y_start + TILE_SIZE)
+    while (y < y_start + TILE_SIZE - 1)
     {
 		x = x_start;
-        while (x < x_start + TILE_SIZE)
+        while (x < x_start + TILE_SIZE - 1)
 		{
             my_mlx_pixel_put(img, x, y,clr);
 			x++;	
@@ -63,7 +63,7 @@ void	draw_line(t_data *data, int y_start, int x_start, int end_y , int end_x)
     }
 }
 
-void	draw_walls(t_data *data)
+void	draw_walls(t_data *data, int clr, char c)
 {
 	int i;
 	int j;
@@ -74,8 +74,8 @@ void	draw_walls(t_data *data)
 		i  = 0;
 		while(data->map->map[j][i])
 		{
-			if (data->map->map[j][i] == '1')
-				draw_wall(data->img, i ,j, 0xFFFFFF);
+			if (data->map->map[j][i] == c)
+				draw_wall(data->img, i ,j, clr);
 			i++;
 		}
 		j++;
@@ -89,22 +89,22 @@ void	draw_player_pixels(t_data *data, int i, int j)
 	int	y;
 	int x;
 
+	// x_start = i - (PLAYER_SIZE / 2);
+    // y_start = j - (PLAYER_SIZE / 2);
 	x_start = i;
     y_start = j;
 	y = y_start;
-    while (y < (y_start + PLAYER_SIZE))
+    while (y < (y_start + (PLAYER_SIZE)))
     {
 		x = x_start;
-        while (x < (x_start + PLAYER_SIZE)) 
+        while (x < (x_start + (PLAYER_SIZE))) 
 		{
         	my_mlx_pixel_put(data->img, x, y, 0xF4C2C2);
 			x++;
 		}
 		y++;
     }
-	draw_line(data, y_start, x_start, (HEIGHT - 100),( WIDTH - 100));
 }
-
 
 void	draw_player(t_data *data)
 {
@@ -124,10 +124,13 @@ void	draw_player(t_data *data)
 		}
 		j++;
 	}
+	draw_line(data, data->player.player_y, data->player.player_x, (data->player.player_y - sin(data->player.rotation_angle) / 0.01),
+		(data->player.player_x - cos(data->player.rotation_angle) / 0.01));
+	
 }
 
 void draw_2d_map(t_data *data)
 {
-	draw_walls(data);
+	draw_walls(data, 0xFFFFFF, '1');
 	draw_player(data);
 }

@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 07:06:56 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/12 17:34:36 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/15 17:40:08 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	init_player_dircetions(t_data *data, int y, int x)
 {
-	if (data->map->map[(y / TILE_SIZE)][x / TILE_SIZE] == 'N')
+	if (data->map->map[(y / TILE_SIZE)][x / TILE_SIZE] == 'W')
 		data->player.rotation_angle = 0;
-	else if (data->map->map[(y / TILE_SIZE)][x / TILE_SIZE] == 'S')
-		data->player.rotation_angle = M_PI;
 	else if (data->map->map[(y / TILE_SIZE)][x / TILE_SIZE] == 'E')
+		data->player.rotation_angle = M_PI;
+	else if (data->map->map[(y / TILE_SIZE)][x / TILE_SIZE] == 'N')
 		data->player.rotation_angle = M_PI / 2;
-	else if (data->map->map[(y / TILE_SIZE)][x / TILE_SIZE] == 'W')
+	else if (data->map->map[(y / TILE_SIZE)][x / TILE_SIZE] == 'S')
 		data->player.rotation_angle = 3 * M_PI / 2;
 }
 
@@ -29,7 +29,6 @@ void	player_init(t_data *data)
 	init_pos(data);
 	data->player.player_x = data->map->x * TILE_SIZE;
 	data->player.player_y = data->map->y * TILE_SIZE;
-	data->player.player_speed = 4.0f;
 	init_player_dircetions(data, data->player.player_y, data->player.player_x);
 }
 
