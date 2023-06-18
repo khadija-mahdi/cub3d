@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:10:35 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/15 17:45:36 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/18 15:10:19 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	draw_wall(t_img *img, int i, int j, int clr)
 	int	y;
 	int x;
 
-	x_start = i * TILE_SIZE - 1;
-    y_start = j * TILE_SIZE - 1;
+	x_start = i * TILE_SIZE;
+    y_start = j * TILE_SIZE;
 	y = y_start;
-    while (y < y_start + TILE_SIZE - 1)
+    while (y < y_start + TILE_SIZE)
     {
 		x = x_start;
-        while (x < x_start + TILE_SIZE - 1)
+        while (x < x_start + TILE_SIZE)
 		{
             my_mlx_pixel_put(img, x, y,clr);
 			x++;	
@@ -89,10 +89,10 @@ void	draw_player_pixels(t_data *data, int i, int j)
 	int	y;
 	int x;
 
-	// x_start = i - (PLAYER_SIZE / 2);
-    // y_start = j - (PLAYER_SIZE / 2);
-	x_start = i;
-    y_start = j;
+	x_start = i - (PLAYER_SIZE / 2);
+    y_start = j - (PLAYER_SIZE / 2);
+	// x_start = i;
+    // y_start = j;
 	y = y_start;
     while (y < (y_start + (PLAYER_SIZE)))
     {
@@ -119,13 +119,13 @@ void	draw_player(t_data *data)
 		{
 			if (data->map->map[j][i] == 'N' || data->map->map[j][i] == 'S'
 				|| data->map->map[j][i] == 'E' || data->map->map[j][i] == 'W')
-				draw_player_pixels(data, data->player.player_x, data->player.player_y);
+				draw_player_pixels(data, (data->player.player_x), data->player.player_y);
 			i++;
 		}
 		j++;
 	}
-	draw_line(data, data->player.player_y, data->player.player_x, (data->player.player_y - sin(data->player.rotation_angle) / 0.01),
-		(data->player.player_x - cos(data->player.rotation_angle) / 0.01));
+	draw_line(data, data->player.player_y, data->player.player_x, (data->player.player_y - sin(data->player.rotation_angle) * 100),
+		(data->player.player_x - cos(data->player.rotation_angle) * 100));
 	
 }
 

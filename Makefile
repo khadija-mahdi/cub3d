@@ -6,7 +6,7 @@
 #    By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 02:03:16 by moel-asr          #+#    #+#              #
-#    Updated: 2023/06/15 19:00:36 by kmahdi           ###   ########.fr        #
+#    Updated: 2023/06/18 19:32:27 by kmahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ SRC = main.c\
 	./parser/parse_texture_utils.c \
 	./parser/parse_texture.c \
 	./parser/parser_utils.c \
-	./rey_casting/utils.c
+	./rey_casting/utils.c\
+	./rey_casting/player_movement.c\
+	./rey_casting/collision.c\
 	
 OBJ_DIR = files_objects
 
