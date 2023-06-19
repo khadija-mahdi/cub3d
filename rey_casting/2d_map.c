@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:10:35 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/18 15:10:19 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/19 19:16:12 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	draw_wall(t_img *img, int i, int j, int clr)
     }
 }
 
-void	draw_line(t_data *data, int y_start, int x_start, int end_y , int end_x)
+void	draw_line(t_data *data, int y_start, int x_start, int end_y , int end_x, int clr)
 {
     float	steps;
 	int		dx;
@@ -57,7 +57,9 @@ void	draw_line(t_data *data, int y_start, int x_start, int end_y , int end_x)
 	x_increment = dx / steps;
     y_increment = dy / steps;    
     for (int k = 0; k <= steps; k++) {
-        my_mlx_pixel_put(data->img, x1, y1, 0xFF0000);
+        my_mlx_pixel_put(data->img, x1, y1, clr);
+		if (data->map->map[(int)y1 / TILE_SIZE][(int)x1 / TILE_SIZE] == '1')
+			break;
         x1 += x_increment;
         y1 += y_increment;
     }
@@ -124,9 +126,21 @@ void	draw_player(t_data *data)
 		}
 		j++;
 	}
-	draw_line(data, data->player.player_y, data->player.player_x, (data->player.player_y - sin(data->player.rotation_angle) * 100),
-		(data->player.player_x - cos(data->player.rotation_angle) * 100));
-	
+	float fld_of_view = data->player.rotation_angle - M_PI / 6;
+	int index = 0;
+	while (index < WIDTH)
+	{
+		printf(" rotation : %f\n", fld_of_view);
+		if (fld_of_view  < 0)
+				fld_of_view  += 2 * M_PI;
+		if (fld_of_view > 2 * M_PI)
+			fld_of_view -= 2 * M_PI;
+		draw_line(data, data->player.player_y, data->player.player_x, (data->player.player_y - sin(fld_of_view) * HEIGHT - 1),
+		((data->player.player_x - cos(fld_of_view) * WIDTH - 1)), 0x0000FF);
+		fld_of_view += ( M_PI / 3 / WIDTH);
+		index++;
+		usleep(10);
+	}	
 }
 
 void draw_2d_map(t_data *data)

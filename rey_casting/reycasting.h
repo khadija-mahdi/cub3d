@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:28:36 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/18 19:31:36 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/19 11:13:08 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "../cub3d.h"
 
 # define PI 3.14159265359
+
+# define FOV 60
 
 # define TILE_SIZE 64
 # define PLAYER_SIZE 8
@@ -40,7 +42,7 @@
 #define COLLISION_DIS 16
 
 #define MOVE_SPEED 3
-#define ROTATION_SPEED 0.1
+#define ROTATION_SPEED 0.05
 
 
 typedef struct s_player {
@@ -98,11 +100,14 @@ void	draw_2d_map(t_data *data);
 void	rey_casting(struct s_map_info *map);
 void	render_player(t_data *data);
 int		key_code(t_data *data);
-int		keys_up(int key_code, t_data *data);
+int		key_press(int key_code, t_data *data);
 void	player_pos(t_data *data);
-int		keys_down(int key_code,t_data *data);
+int		key_release(int key_code,t_data *data);
 void	player_up_down(t_data *data, int key);
 void	player_left_right(t_data *data, int key);
-
-
+int		right_player(t_data *data);
+int		down_player(t_data *data);
+int		up_player(t_data *data);
+int		left_player(t_data *data);
+int		wall_collision(t_data *data, double y, double x);
 #endif

@@ -12,7 +12,7 @@
 
 #include "reycasting.h"
 
-int	keys_down(int key_code,t_data *data)
+int	 key_release(int key_code,t_data *data)
 {
 	if (key_code == LEFT_ARROW || key_code == RIGHT_ARROW)
 		data->dir_keys[0] = -1;
@@ -41,4 +41,3 @@ void	rey_casting(struct s_map_info *map)
 	draw_2d_map(data);
 	game_running(data);
 }
-
