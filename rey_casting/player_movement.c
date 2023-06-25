@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 07:45:24 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/19 19:09:42 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/25 02:16:43 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	player_left_right(t_data *data, int key)
 	double new_x;
 	double new_y;
 
-	if (key == 0) // left
+	if (key == 1) // left
 	{
 		new_x = (data->player.player_x) + cos(data->player.rotation_angle  + M_PI / 2) * MOVE_SPEED;
 		new_y = (data->player.player_y ) + sin(data->player.rotation_angle + M_PI / 2) * MOVE_SPEED;
@@ -27,7 +27,7 @@ void	player_left_right(t_data *data, int key)
 	    	data->player.player_y = new_y;
 		}
 	}
-	else if (key == 1) //right
+	else if (key == 0) //right
 	{
 		new_x = (data->player.player_x) - cos(data->player.rotation_angle  + M_PI / 2) * MOVE_SPEED;
 		new_y = (data->player.player_y ) - sin(data->player.rotation_angle + M_PI / 2) * MOVE_SPEED;
@@ -44,7 +44,7 @@ void player_up_down(t_data *data, int key)
 	double	new_y;
     double	new_x;
 
-	if (key == 1)
+	if (key == 0)
 	{
 		new_x = (data->player.player_x ) - cos(data->player.rotation_angle) * MOVE_SPEED;
 		new_y = (data->player.player_y ) - sin(data->player.rotation_angle) * MOVE_SPEED;
@@ -54,7 +54,7 @@ void player_up_down(t_data *data, int key)
 	    	data->player.player_y = new_y;
 		}
 	}
-	if (key == 0)
+	if (key == 1)
 	{
 		new_x = (data->player.player_x ) + cos(data->player.rotation_angle) * MOVE_SPEED;
 		new_y = (data->player.player_y ) + sin(data->player.rotation_angle) * MOVE_SPEED;

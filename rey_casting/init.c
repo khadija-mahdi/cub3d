@@ -6,13 +6,13 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 07:06:56 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/18 12:17:57 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/25 01:54:18 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "reycasting.h"
 
-void	init_player_dircetions(t_data *data, int y, int x)
+void	init_player_directions(t_data *data, int y, int x)
 {
 	if (data->map->map[(y / TILE_SIZE)][x / TILE_SIZE] == 'W')
 		data->player.rotation_angle = 0;
@@ -28,34 +28,31 @@ void	player_init(t_data *data)
 {
 	data->player.player_x = data->map->x * (TILE_SIZE) + (TILE_SIZE / 2);
 	data->player.player_y = data->map->y * (TILE_SIZE) + (TILE_SIZE / 2);
-	init_player_dircetions(data, data->player.player_y, data->player.player_x);
+	init_player_directions(data, data->player.player_y, data->player.player_x);
 }
 
 void	init_window_img(t_data *data)
 {
 	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "The_KM_game!");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT,
+			"The_KM_game!");
 	data->img = malloc(sizeof(t_img));
-	data->img->img_ptr = mlx_new_image(data->mlx_ptr,WIDTH, HEIGHT);	
-    data->img->addr = mlx_get_data_addr(data->img->img_ptr,
-		&data->img->bits_per_pixel, &data->img->line_length, &data->img->endian);
-}
-void	def_keys(t_data	*data)
-{
-	data->keys.left_arrow = 0;
-	data->keys.right_arrow = 0;
-	data->keys.right_key = 0;
-	data->keys.left_key = 0;
-	data->keys.up_key = 0;
-	data->keys.down_key = 0;
+	data->img->img_ptr = mlx_new_image(data->mlx_ptr, WIDTH,
+			HEIGHT);
+	data->img->addr = mlx_get_data_addr(data->img->img_ptr,
+			&data->img->bits_per_pixel, &data->img->line_length,
+			&data->img->endian);
 }
 
-t_data	*init_data(t_data *data, struct s_map_info  *map)
+t_data	*init_data(t_data *data, struct s_map_info *map)
 {
 	data = malloc(sizeof(t_data));
 	data->map = map;
 	init_window_img(data);
+	data->rays = malloc(sizeof(t_rey *) * WIDTH);
 	player_init(data);
-	def_keys(data);
-	return(data);
+	data->dir_keys[0] = -1;
+	data->dir_keys[1] = -1;
+	data->dir_keys[2] = -1;
+	return (data);
 }

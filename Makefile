@@ -6,7 +6,7 @@
 #    By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 02:03:16 by moel-asr          #+#    #+#              #
-#    Updated: 2023/06/19 18:52:57 by kmahdi           ###   ########.fr        #
+#    Updated: 2023/06/25 01:45:34 by kmahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,9 @@ SRC = main.c\
 	./rey_casting/utils.c\
 	./rey_casting/player_movement.c\
 	./rey_casting/collision.c\
+	./rey_casting/wall_casting.c\
+	./rey_casting/vertical_rays.c\
+	./rey_casting/horizontal_rays.c\
 	
 OBJ_DIR = files_objects
 
@@ -46,7 +49,7 @@ all: $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	@$(CC) ${CFLAGS} -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
 	make -C minilibft
