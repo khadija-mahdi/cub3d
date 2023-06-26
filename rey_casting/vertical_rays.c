@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 01:34:35 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/25 01:41:10 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/26 23:14:38 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void vertical_intersection(t_rey *rays, t_data *data, double ray_angle)
 {
-	rays->ver_ray.intersect_x = floor(data->player.player_x / TILE_SIZE) * TILE_SIZE;
+	rays->ver_ray.intersect_x = fabs(floor(data->player.player_x / TILE_SIZE)) * TILE_SIZE;
 	if (rays->facing_right)
 		rays->ver_ray.intersect_x += TILE_SIZE;
 	rays->ver_ray.intersect_y = data->player.player_y 
@@ -73,3 +73,4 @@ void vertical_ray(t_data *data, t_rey *rays, double angle)
 	else
 		rays->ver_ray.distance = INT_MAX;
 }
+

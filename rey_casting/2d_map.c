@@ -6,13 +6,13 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:10:35 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/25 02:20:55 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/26 13:33:14 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "reycasting.h"
 
-void	draw_wall(t_img *img, int i, int j, int clr)
+  void	draw_wall(t_img *img, int i, int j, int clr)
 {
 	int x_start;
 	int y_start;

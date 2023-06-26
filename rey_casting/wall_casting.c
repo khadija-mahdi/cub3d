@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 18:39:49 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/25 02:21:05 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/26 12:37:29 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ double normalize_angle(double angle)
 
 int hit_wall(t_data *data, double y, double x)
 {
-    if (data->map->map[(int)floor((y)/ TILE_SIZE)]
-		[(int)floor((x)/ TILE_SIZE)] == '1')
+    if (data->map->map[(int)floor(y / TILE_SIZE)]
+		[(int)floor(x / TILE_SIZE)] == '1')
         return (0);
     return (1);
 }
@@ -72,6 +72,8 @@ void	cast_rays(t_data *data)
 	while (i < WIDTH)
 	{
 		data->rays[i] = malloc(sizeof(t_rey));
+		if (!data->rays[i])
+			return ;
 		cast_single_ray(data, ray_angle, i);
 		draw_line(data, data->player.player_y, data->player.player_x,
 			data->rays[i]->wall_y, data->rays[i]->wall_x, 0xFFF000);

@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 01:41:59 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/25 02:23:33 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/25 21:03:28 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void hor_steps(t_rey *rays, double ray_angle)
 	if (rays->facing_right && rays->hor_ray.step_x < 0)
 		rays->hor_ray.step_x *= -1;
 }
-
 
 void	horizontal_ray(t_data *data, t_rey *rays, double angle)
 {

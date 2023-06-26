@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 07:45:24 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/25 02:16:43 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/26 22:27:48 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ void player_up_down(t_data *data, int key)
 
 void	player_pos(t_data *data)
 {
-	if (data->dir_keys[0] == RIGHT_ARROW)
+	if (data->dir_keys[0] == RIGHT_ARROW || data->dir_mouse[0] == RIGHT_CLICK)
 	{
 		data->player.rotation_angle += ROTATION_SPEED;
 		if (data->player.rotation_angle > 2 * M_PI)
 			data->player.rotation_angle -= 2 * M_PI;
 	}
-	else if (data->dir_keys[0] == LEFT_ARROW)
+	else if (data->dir_keys[0] == LEFT_ARROW || data->dir_mouse[0] == LEFT_CLICK)
 	{
 		data->player.rotation_angle -= ROTATION_SPEED;
 		if (data->player.rotation_angle < 0)
@@ -84,9 +84,9 @@ void	player_pos(t_data *data)
 		player_left_right(data, 0);
 	else if (data->dir_keys[1] == D_RIGHT)
 		player_left_right(data, 1);
-	if (data->dir_keys[2] == W_UP)
+	if (data->dir_keys[2] == W_UP || data->dir_mouse[1] == SCROLL_UP)
 		player_up_down(data, 1);
-	else if (data->dir_keys[2] == S_DOWN)
+	else if (data->dir_keys[2] == S_DOWN || data->dir_mouse[1] == SCROLL_DOWN)
 		player_up_down(data, 0);
 }
 
@@ -102,12 +102,32 @@ int	key_press(int key_code, t_data *data)
 		data->dir_keys[2] = key_code;
     return 0;
 }
+int handle_mouse_click(int button, int x, int y, t_data *data) 
+{
+	if (button == LEFT_CLICK || button == RIGHT_CLICK)
+		data->dir_mouse[0] = button;
+	if (button == SCROLL_UP || button == SCROLL_DOWN)
+		data->dir_mouse[1] = button;
+    return 0;
+}
+
+int release_mouse(int button, int x, int y, t_data *data) 
+{
+	if (button == LEFT_CLICK || button == RIGHT_CLICK)
+		data->dir_mouse[0] = -1;
+	if (button == SCROLL_UP || button == SCROLL_DOWN)
+		data->dir_mouse[1] = -1;
+    return 0;
+}
+
 
 int	key_code(t_data *data)
 {
-
-	mlx_hook(data->win_ptr, 2, 1L << 1, key_press, data);
-	mlx_hook(data->win_ptr, 3, 1L << 0,  key_release, data);
+	int (*mouse)(int, t_data);//mask
+	// mlx_hook(data->win_ptr, 4, 4, handle_mouse_click, data);
+	// mlx_hook(data->win_ptr, 5, 8, release_mouse, data);
+	mlx_hook(data->win_ptr, 2, 1, key_press, data);
+	mlx_hook(data->win_ptr, 3, 2,  key_release, data);
 	mlx_hook(data->win_ptr, 17, 0, exit_program, data);
 	player_pos(data);
 	render_player(data);

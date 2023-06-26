@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:28:36 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/25 02:21:31 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/26 21:16:01 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,15 @@
 
 #define MOVE_SPEED 5
 #define ROTATION_SPEED 0.05
+
+
+//mouse
+
+#define LEFT_CLICK 1
+#define RIGHT_CLICK 2
+#define MIDDLE_CLICK 3
+#define SCROLL_UP 4
+#define SCROLL_DOWN 5
 
 
 typedef struct s_hor_rey {
@@ -114,6 +123,7 @@ typedef struct s_data {
 	t_img 				*img;
 	struct s_map_info	*map;
 	int					dir_keys[3];
+	int					dir_mouse[2];
 	t_rey				**rays;
 	int					wall_nbr;
 	

@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 07:06:56 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/25 01:54:18 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/26 22:13:00 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	init_window_img(t_data *data)
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT,
 			"The_KM_game!");
 	data->img = malloc(sizeof(t_img));
+	if (!data->img)
+		return;
 	data->img->img_ptr = mlx_new_image(data->mlx_ptr, WIDTH,
 			HEIGHT);
 	data->img->addr = mlx_get_data_addr(data->img->img_ptr,
@@ -47,6 +49,8 @@ void	init_window_img(t_data *data)
 t_data	*init_data(t_data *data, struct s_map_info *map)
 {
 	data = malloc(sizeof(t_data));
+	if (!data)
+		return (NULL);
 	data->map = map;
 	init_window_img(data);
 	data->rays = malloc(sizeof(t_rey *) * WIDTH);
@@ -54,5 +58,7 @@ t_data	*init_data(t_data *data, struct s_map_info *map)
 	data->dir_keys[0] = -1;
 	data->dir_keys[1] = -1;
 	data->dir_keys[2] = -1;
+	data->dir_mouse[0] = -1;
+	data->dir_mouse[1] = -1;
 	return (data);
 }
