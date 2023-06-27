@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 10:33:07 by moel-asr          #+#    #+#             */
-/*   Updated: 2023/06/27 00:03:58 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/15 18:00:15 by moel-asr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,19 @@ void	check_color_and_texture(char *str, int *arr, t_map_info *data)
 		arr[2]++;
 	else if (ft_strcmp(str, "EA") == 0)
 		arr[3]++;
-	else if (ft_strcmp(str, "F ") == 0 || ft_strcmp(str, "F\t") == 0)
+	else if (ft_strcmp(str, "F ") == 0 || \
+		ft_strcmp(str, "F\t") == 0)
 		arr[4]++;
-	else if (ft_strcmp(str, "C ") == 0 || ft_strcmp(str, "C\t") == 0)
+	else if (ft_strcmp(str, "C ") == 0 || \
+		ft_strcmp(str, "C\t") == 0)
 		arr[5]++;
 }
 
 void	assign_texture_paths(t_map_info *data)
 {
-	int		i;
-	int		j;
-	char	**texture_parts;
+	int	i;
+	int j;
+	char **texture_parts;
 
 	i = 0;
 	texture_parts = NULL;
