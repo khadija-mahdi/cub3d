@@ -6,7 +6,7 @@
 #    By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 02:03:16 by moel-asr          #+#    #+#              #
-#    Updated: 2023/06/25 01:45:34 by kmahdi           ###   ########.fr        #
+#    Updated: 2023/06/27 04:38:04 by kmahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ CC = cc
 
 MLX= -lmlx -framework OpenGL -framework AppKit
 
-# DIB= -fsanitize=address -g3
+DIB= -fsanitize=address -g3
 
 $(RM) = rm -f 
   

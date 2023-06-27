@@ -6,29 +6,35 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 19:22:11 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/25 02:00:59 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/27 04:26:08 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "reycasting.h"
 
-int wall_collision(t_data *data, double y, double x)
+int	wall_collision(t_data *data, double y, double x)
 {
-    if (data->map->map[(int)((y - 8) / TILE_SIZE)]
-        [(int)((x - 8) / TILE_SIZE)] == '1')
-            return (0);
-    else if (data->map->map[(int)((y + 8) / TILE_SIZE)]
-        [(int)((x + 8)/ TILE_SIZE)] == '1')
-            return (0);
-	else if (data->map->map[(int)((y - 8) / TILE_SIZE)][(int)((x + 8)/ TILE_SIZE)] == '1')
-        return 0;
-	else if (data->map->map[(int)((y + 8) / TILE_SIZE)][(int)((x - 8)/ TILE_SIZE)] == '1')
-        return (0);
-    else
-        return (1);
+	if (!data->map->map && !data->map->map[(int)floor(y / TILE_SIZE)]
+		 && !data->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x
+			/ TILE_SIZE)])
+		return (0);
+	if (data->map->map[(int)((y - 8) / TILE_SIZE)][(int)((x - 8)
+			/ TILE_SIZE)] == '1')
+		return (0);
+	else if (data->map->map[(int)((y + 8) / TILE_SIZE)][(int)((x + 8)
+			/ TILE_SIZE)] == '1')
+		return (0);
+	else if (data->map->map[(int)((y - 8) / TILE_SIZE)][(int)((x + 8)
+			/ TILE_SIZE)] == '1')
+		return (0);
+	else if (data->map->map[(int)((y + 8) / TILE_SIZE)][(int)((x - 8)
+			/ TILE_SIZE)] == '1')
+		return (0);
+	else
+		return (1);
 }
 
-int	 key_release(int key_code,t_data *data)
+int	key_release(int key_code, t_data *data)
 {
 	if (key_code == LEFT_ARROW || key_code == RIGHT_ARROW)
 		data->dir_keys[0] = -1;
@@ -36,5 +42,5 @@ int	 key_release(int key_code,t_data *data)
 		data->dir_keys[1] = -1;
 	if (key_code == W_UP || key_code == S_DOWN)
 		data->dir_keys[2] = -1;
-    return 0;
+	return (0);
 }

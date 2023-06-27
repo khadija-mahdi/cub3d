@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:10:35 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/26 13:33:14 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/27 04:53:17 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void	draw_player_pixels(t_data *data, int i, int j)
 	y = y_start;
 	while (y < (y_start + (PLAYER_SIZE)))
 	{
-	x = x_start;
-	while (x < (x_start + (PLAYER_SIZE)))
+		 x = x_start;
+		while (x < (x_start + (PLAYER_SIZE)))
 		{
 			my_mlx_pixel_put(data->img, x, y, 0xF4C2C2);
 			x++;
@@ -127,6 +127,6 @@ void	draw_player(t_data *data)
 
 void	draw_2d_map(t_data *data)
 {
-	draw_walls(data, 0xFFFFFF, '1');
+	// draw_walls(data, 0xFFFFFF, '1');
 	draw_player(data);
 }
