@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 01:34:35 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/27 23:04:32 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/30 03:13:16 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void vertical_ray(t_data *data, t_rey *rays, double angle)
 	rays->ver_ray.is_wall = 0;
 	rays->ver_ray.next_x = rays->ver_ray.intersect_x;
 	rays->ver_ray.next_y = rays->ver_ray.intersect_y;
-	while (rays->ver_ray.next_x >= 0 && rays->ver_ray.next_x <= WIDTH
-		&& rays->ver_ray.next_y >= 0 && rays->ver_ray.next_y <= HEIGHT)
+	while (rays->ver_ray.next_x >= 0 && rays->ver_ray.next_x <= data->map->width * TILE_SIZE
+		&& rays->ver_ray.next_y >= 0 && rays->ver_ray.next_y <= data->map->height * TILE_SIZE)
 	{	
 		y_check = rays->ver_ray.next_y;
 		if (rays->facing_left)

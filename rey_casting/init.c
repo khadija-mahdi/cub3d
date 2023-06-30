@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 07:06:56 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/27 22:00:10 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/06/30 03:39:45 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,14 @@ int	get_height_map(t_data *data)
 	return (height);
 }
 
-int get_walls_nbr(t_data *data)
+int	get_walls_nbr(t_data *data)
 {
-	int i  = 0;
-	int j = 0;
-	int walls_nbr;
+	int	i;
+	int	j;
+	int	walls_nbr;
+
+	i = 0;
+	j = 0;
 	while (data->map->map && data->map->map[i])
 	{
 		j = 0;
@@ -60,14 +63,6 @@ int get_walls_nbr(t_data *data)
 	return (walls_nbr);
 }
 
-t_mini_img *minimap_img(t_mini_img *mini_img, t_data *data)
-{
-	mini_img = malloc(sizeof(t_mini_img));
-	mini_img->img_ptr = mlx_new_image(data->mlx_ptr, MINI_MAP_WIDTH, MINI_MAP_HEIGHT);
-	mini_img->addr = mlx_get_data_addr(mini_img->img_ptr, &mini_img->bits_per_pixel, &mini_img->line_length, &mini_img->endian);
-	return (mini_img);
-}
-
 void	init_window_img(t_data *data)
 {
 	data->img = malloc(sizeof(t_img));
@@ -76,12 +71,12 @@ void	init_window_img(t_data *data)
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT,
 		"The_KM_game!");
-	data->mini_img = minimap_img(data->mini_img, data);
 	data->img->img_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
 	data->img->addr = mlx_get_data_addr(data->img->img_ptr,
 		&data->img->bits_per_pixel, &data->img->line_length,
 		&data->img->endian);
 }
+
 
 t_data	*init_data(t_data *data, struct s_map_info *map)
 {
