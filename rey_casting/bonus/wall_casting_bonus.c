@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wall_casting.c                                     :+:      :+:    :+:   */
+/*   wall_casting_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 18:39:49 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/30 03:22:15 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/01 22:24:56 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reycasting.h"
+#include "../reycasting.h"
+
+double	normalize_angle(double angle)
+{
+	angle = remainder(angle, (2 * M_PI));
+	if (angle < 0)
+		angle += (2 * M_PI);
+	return (angle);
+}
 
 void	get_directions(t_rey *rays, double angle)
 {
@@ -23,14 +31,6 @@ void	get_directions(t_rey *rays, double angle)
 	rays->facing_up = !rays->facing_down;
 	rays->facing_right = angle < 0.5 * M_PI || angle > 1.5 * M_PI;
 	rays->facing_left = !rays->facing_right;
-}
-
-double	normalize_angle(double angle)
-{
-	angle = remainder(angle, (2 * M_PI));
-	if (angle < 0)
-		angle += (2 * M_PI);
-	return (angle);
 }
 
 int	hit_wall(t_data *data, double y, double x)
@@ -100,7 +100,7 @@ void	draw_bottom_half_wall(int i, double ds, t_data *data, t_rey *rays)
 	}
 }
 
-void	cast_rays(t_data *data)
+void	cast_rays_bonus(t_data *data)
 {
 	double	ray_angle;
 	double	hight_wall_hit;
@@ -117,7 +117,7 @@ void	cast_rays(t_data *data)
 		cast_single_ray(data, ray_angle, i);
 		data->rays[i]->distance = data->rays[i]->distance
 			* cos(data->rays[i]->ray_angle - data->player.rotation_angle);
-		dpp = (WIDTH / 2) / tan(FOV / 2);
+		dpp = (WIDTH / 2) / tan(FOV);
 		hight_wall_hit = (TILE_SIZE / data->rays[i]->distance) * dpp;
 		draw_top_half_wall(i, hight_wall_hit, data, data->rays[i]);
 		draw_bottom_half_wall(i, hight_wall_hit, data, data->rays[i]);

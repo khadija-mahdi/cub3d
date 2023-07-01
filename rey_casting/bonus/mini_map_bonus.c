@@ -6,11 +6,11 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:10:35 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/30 04:29:13 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/01 22:10:35 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reycasting.h"
+#include "rey_casting_bonus.h"
 
 
 void	draw_line(t_data *data, int y_start, int x_start, int end_y, int end_x, int clr)
@@ -143,7 +143,7 @@ void	draw_player(t_data *data)
 	draw_line_clear_rays(data);
 }
 
-void	draw_mini_map(t_data *data)
+void	render_mini_map(t_data *data)
 {
 	data->scaler_hight = 0.25;
 	data->scaler_width = 0.25;

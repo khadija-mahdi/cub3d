@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_movement.c                                  :+:      :+:    :+:   */
+/*   player_movement_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 07:45:24 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/30 04:32:44 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/01 21:53:02 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reycasting.h"
+#include "../reycasting.h"
 
 void	player_left_right(t_data *data, int key)
 {
@@ -74,7 +74,7 @@ void	player_up_down(t_data *data, int key)
 	}
 }
 
-void	player_pos(t_data *data)
+void	render_position(t_data *data)
 {
 	if (data->dir_keys[0] == RIGHT_ARROW || data->dir_mouse[0] == RIGHT_CLICK)
 	{
@@ -99,7 +99,25 @@ void	player_pos(t_data *data)
 		player_up_down(data, 0);
 }
 
-int	key_press(int key_code, t_data *data)
+int	handle_mouse_click(int button, int x, int y, t_data *data)
+{
+	if (button == LEFT_CLICK || button == RIGHT_CLICK)
+		data->dir_mouse[0] = button;
+	if (button == SCROLL_UP || button == SCROLL_DOWN)
+		data->dir_mouse[1] = button;
+	return (0);
+}
+
+int	release_mouse(int button, int x, int y, t_data *data)
+{
+	if (button == LEFT_CLICK || button == RIGHT_CLICK)
+		data->dir_mouse[0] = -1;
+	if (button == SCROLL_UP || button == SCROLL_DOWN)
+		data->dir_mouse[1] = -1;
+	return (0);
+}
+
+int	key_press_bonus(int key_code, t_data *data)
 {
 	if (key_code == ESC)
 		exit_msg("exit with esc key", 0);
@@ -112,14 +130,3 @@ int	key_press(int key_code, t_data *data)
 	return (0);
 }
 
-
-
-int	key_code(t_data *data)
-{
-	mlx_hook(data->win_ptr, 2, 1L << 1, key_press, data);
-	mlx_hook(data->win_ptr, 3, 1L << 0, key_release, data);
-	mlx_hook(data->win_ptr, 17, 0, exit_program, data);
-	player_pos(data);
-	render_player(data);
-	return (0);
-}

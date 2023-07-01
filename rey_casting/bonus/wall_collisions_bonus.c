@@ -1,28 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_rey.c                                         :+:      :+:    :+:   */
+/*   wall_collisions_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 12:26:27 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/06/30 03:37:23 by kmahdi           ###   ########.fr       */
+/*   Created: 2023/06/30 20:47:08 by kmahdi            #+#    #+#             */
+/*   Updated: 2023/07/01 21:05:32 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reycasting.h"
-
-void	game_running(t_data *data)
-{
-	mlx_loop_hook(data->mlx_ptr, key_code, data);
-	mlx_loop(data->mlx_ptr);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-}
-
-void	rey_casting(struct s_map_info *map)
-{
-	t_data	*data;
-
-	data = init_data(data, map);
-	game_running(data);
-}
+#include "../reycasting.h"

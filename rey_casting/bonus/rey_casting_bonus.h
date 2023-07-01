@@ -1,116 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reycasting.h                                       :+:      :+:    :+:   */
+/*   rey_Casting_bonus.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 12:28:36 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/01 22:12:31 by kmahdi           ###   ########.fr       */
+/*   Created: 2023/07/01 21:58:20 by kmahdi            #+#    #+#             */
+/*   Updated: 2023/07/01 22:06:57 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REYCASTING_H
-# define REYCASTING_H
+#ifndef REY_CASTING_BONUS_H
+# define REY_CASTING_BONUS_H
 
-# include "../cub3d.h"
-# include "macros.h"
-# include "../minilibft/minilibft.h"
-# include "../get_next_line/get_next_line.h"
-#include "../parser/parser.h"
-# include "../rey_casting/reycasting.h"
-
-
-// reycasting structs ---------------------------------------------------------------------->
-typedef struct s_hor_rey
-{
-	double				intersect_y;
-	double				intersect_x;
-	double				step_y;
-	double				step_x;
-	double				wall_x;
-	double				wall_y;
-	double				next_y;
-	double				next_x;
-	int					is_wall;
-	double				distance;
-}						t_hor_rey;
-
-typedef struct s_ver_rey
-{
-	double				intersect_y;
-	double				intersect_x;
-	double				step_y;
-	double				step_x;
-	int					is_wall;
-	double				wall_x;
-	double				wall_y;
-	double				next_y;
-	double				next_x;
-	double				distance;
-
-}						t_ver_rey;
-
-typedef struct s_rey
-{
-	double				ray_angle;
-	double				wall_x;
-	double				wall_y;
-	double				distance;
-	int					facing_up;
-	int					facing_down;
-	int					facing_left;
-	int					facing_right;
-	t_hor_rey			hor_ray;
-	t_ver_rey			ver_ray;
-}						t_rey;
-
-// player structs ---------------------------------------------------------------------->
-typedef struct s_player
-{
-	double				player_x;
-	double				player_y;
-	double				player_rotation;
-	double				rotation_angle;
-	double				player_speed;
-	double				player_direction;
-	double				speed_movement;
-	double				speed_rotation;
-	int					is_player;
-	double				dpx;
-	double				dpy;
-
-}						t_player;
-
-// images structs ---------------------------------------------------------------------->
-typedef struct s_img
-{
-	void				*img_ptr;
-	char				*addr;
-	int					bits_per_pixel;
-	int					line_length;
-	int					endian;
-}						t_img;
-
-
-// all data struct ---------------------------------------------------------------------->
-typedef struct s_data
-{
-	void				*mlx_ptr;
-	void				*win_ptr;
-	t_player			player;
-	t_img				*img;
-	struct s_map_info	*map;
-	int					dir_keys[3];
-	int					dir_mouse[2];
-	t_rey				**rays;
-	int					wall_nbr;
-	double				scaler_width;
-	double				scaler_hight;
-
-}						t_data;
-
-// prototypes  -------------------------------------------------------------------------->
+# include "../../cub3d.h"
+# include "../../rey_casting//macros.h"
+# include "../../minilibft/minilibft.h"
+# include "../../get_next_line/get_next_line.h"
+#include "../../parser/parser.h"
+# include "../reycasting.h"
 
 void					free_list(void **list);
 void					exit_msg(char *msg, int status);
@@ -118,6 +26,7 @@ int						exit_program(int key_code);
 t_data					*init_data(t_data *data, struct s_map_info *map);
 int						key_code_fun(int key_code, t_data *data);
 void					my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void					draw_2d_map(t_data *data);
 void					rey_casting(struct s_map_info *map);
 void					render_player(t_data *data);
 int						key_code(t_data *data);
@@ -150,6 +59,5 @@ void					render_mini_map(t_data *data);
 int						key_press_bonus(int key_code, t_data *data);
 int						key_release_bonus(int key_code, t_data *data);
 void					cast_rays_bonus(t_data *data);
-void					render_position(t_data *data);
 
 #endif
