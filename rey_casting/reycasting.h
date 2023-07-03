@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:28:36 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/02 21:11:56 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/03 03:34:39 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,5 +171,6 @@ void	move_right(t_data *data);
 void	move_up(t_data *data);
 void	move_down(t_data *data);
 void	defend_factor(t_data *data);
+int		convert_color(t_data *dat, char **rgb);
 
 #endif

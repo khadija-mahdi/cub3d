@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 21:04:25 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/02 20:59:40 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/03 03:33:55 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	cast_single_ray(t_data *data, float ray_angle, int index)
 	get_directions(data->rays[index], ray_angle);
 	horizontal_ray(data, data->rays[index], ray_angle);
 	vertical_ray(data, data->rays[index], ray_angle);
-	if (data->rays[index]->ver_ray.distance
+	if (data->rays[index]->ver_ray.distance 
 		< data->rays[index]->hor_ray.distance)
 	{
 		data->rays[index]->wall_x = data->rays[index]->ver_ray.wall_x;
@@ -44,7 +44,8 @@ void	draw_top_half_wall(int i, double ds, t_data *data, t_rey *rays)
 		if (half_hight > ((HEIGHT / 2) - ds))
 			my_mlx_pixel_put(data->img, i, half_hight, 0Xffffff);
 		else
-			my_mlx_pixel_put(data->img, i, half_hight, 0x87CEEB);
+			my_mlx_pixel_put(data->img, i, half_hight, convert_color(data,
+					data->map->ceiling_rgb));
 		half_hight--;
 	}
 }
@@ -59,7 +60,8 @@ void	draw_bottom_half_wall(int i, double ds, t_data *data, t_rey *rays)
 		if (half_hight < ((HEIGHT / 2) + ds))
 			my_mlx_pixel_put(data->img, i, half_hight, 0Xffffff);
 		else
-			my_mlx_pixel_put(data->img, i, half_hight, 0X00ff00);
+			my_mlx_pixel_put(data->img, i, half_hight,
+				convert_color(data, data->map->floor_rgb));
 		half_hight++;
 	}
 }

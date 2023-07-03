@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:10:35 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/02 20:46:33 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/03 03:46:11 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,9 @@ void	draw_line_clear_rays(t_data *data)
 	i = 0;
 	while (i < WIDTH)
 	{
-		if (i == (WIDTH / 2))
-		{
-			data->line.end_x = data->rays[i]->wall_x;
-			data->line.end_y = data->rays[i]->wall_y;
-			draw_line(data, data->player.player_y, data->player.player_x);
-		}
+		data->line.end_x = data->rays[i]->wall_x;
+		data->line.end_y = data->rays[i]->wall_y;
+		draw_line(data, data->player.player_y, data->player.player_x);
 		free(data->rays[i]);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 18:39:49 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/03 01:20:06 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/03 03:35:09 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	draw_top_half_wall(int i, double ds, t_data *data, t_rey *rays)
 		if (half_hight > ((HEIGHT / 2) - ds))
 			my_mlx_pixel_put(data->img, i, half_hight, 0Xffffff);
 		else
-			my_mlx_pixel_put(data->img, i, half_hight, 0x87CEEB);
+			my_mlx_pixel_put(data->img, i, half_hight, convert_color(data,
+					data->map->ceiling_rgb));
 		half_hight--;
 	}
 }
@@ -59,7 +60,8 @@ void	draw_bottom_half_wall(int i, double ds, t_data *data, t_rey *rays)
 		if (half_hight < ((HEIGHT / 2) + ds))
 			my_mlx_pixel_put(data->img, i, half_hight, 0Xffffff);
 		else
-			my_mlx_pixel_put(data->img, i, half_hight, 0X00ff00);
+			my_mlx_pixel_put(data->img, i, half_hight,
+				convert_color(data, data->map->floor_rgb));
 		half_hight++;
 	}
 }

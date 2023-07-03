@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:59:00 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/02 20:02:47 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/03 03:34:00 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,18 @@ int	exit_program(int key_code)
 {
 	exit_msg("Exit the program with the X !!", 0);
 	return (0);
+}
+
+int	convert_color(t_data *dat, char **rgb)
+{
+	unsigned char	red;
+	unsigned char	green;
+	unsigned char	blue;
+	int				value;
+
+	red = ft_cub_atoi(rgb[0]);
+	green = ft_cub_atoi(rgb[1]);
+	blue = ft_cub_atoi(rgb[2]);
+	value = ((red << 16) + (green << 8) + blue);
+	return (value);
 }
