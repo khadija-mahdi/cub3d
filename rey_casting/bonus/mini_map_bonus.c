@@ -6,40 +6,11 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:10:35 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/01 22:10:35 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/02 20:46:33 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rey_casting_bonus.h"
-
-
-void	draw_line(t_data *data, int y_start, int x_start, int end_y, int end_x, int clr)
-{
-	float	steps;
-	int		dx;
-	int		dy;
-	float	x_increment;
-	float	y_increment;
-	float	x1;
-	float	y1;
-
-	x1 = x_start;
-	y1 = y_start;
-	dx = end_x - x_start;
-	dy = end_y - y_start;
-	if (abs(dx) > abs(dy))
-		steps = abs(dx);
-	else
-		steps = abs(dy);
-	x_increment = dx / steps;
-	y_increment = dy / steps;
-	for (int k = 0; k <= steps; k++)
-	{
-		my_mlx_pixel_put(data->img, (x1 * data->scaler_width), (y1 * data->scaler_hight), clr);
-		x1 += x_increment;
-		y1 += y_increment;
-	}
-}
+#include "../reycasting.h"
 
 void	draw_wall(t_data *data, int i, int j, int clr)
 {
@@ -56,7 +27,8 @@ void	draw_wall(t_data *data, int i, int j, int clr)
 		x = x_start;
 		while (x < x_start + TILE_SIZE - 1)
 		{
-			my_mlx_pixel_put(data->img,( x * data->scaler_width), (y * data->scaler_hight), clr);
+			my_mlx_pixel_put(data->img, (x * data->scaler_width), (y
+					* data->scaler_hight), clr);
 			x++;
 		}
 		y++;
@@ -91,14 +63,14 @@ void	draw_player_pixels(t_data *data, int i, int j)
 
 	x_start = i - (PLAYER_SIZE / 2);
 	y_start = j - (PLAYER_SIZE / 2);
-
 	y = y_start;
 	while (y < (y_start + (PLAYER_SIZE)))
 	{
 		x = x_start;
 		while (x < (x_start + (PLAYER_SIZE)))
 		{
-			my_mlx_pixel_put(data->img, (x * data->scaler_width), (y * data->scaler_hight), 0xF4C2C2);
+			my_mlx_pixel_put(data->img, (x * data->scaler_width), (y
+					* data->scaler_hight), 0xF4C2C2);
 			x++;
 		}
 		y++;
@@ -112,13 +84,17 @@ void	draw_line_clear_rays(t_data *data)
 	i = 0;
 	while (i < WIDTH)
 	{
-		if ( i == (WIDTH / 2))
-			draw_line(data, data->player.player_y, data->player.player_x,
-				data->rays[i]->wall_y, data->rays[i]->wall_x, BLACK);
+		if (i == (WIDTH / 2))
+		{
+			data->line.end_x = data->rays[i]->wall_x;
+			data->line.end_y = data->rays[i]->wall_y;
+			draw_line(data, data->player.player_y, data->player.player_x);
+		}
 		free(data->rays[i]);
 		i++;
 	}
 }
+
 void	draw_player(t_data *data)
 {
 	int	i;
@@ -134,23 +110,11 @@ void	draw_player(t_data *data)
 		{
 			if (data->map->map[j][i] == 'N' || data->map->map[j][i] == 'S'
 				|| data->map->map[j][i] == 'E' || data->map->map[j][i] == 'W')
-				draw_player_pixels(data, (data->player.player_x ),
+				draw_player_pixels(data, (data->player.player_x),
 					data->player.player_y);
 			i++;
 		}
 		j++;
 	}
 	draw_line_clear_rays(data);
-}
-
-void	render_mini_map(t_data *data)
-{
-	data->scaler_hight = 0.25;
-	data->scaler_width = 0.25;
-	if ((data->map->height * TILE_SIZE) * 0.25 >= HEIGHT / 2)
-		data->scaler_hight = 0.10;
-	if ((data->map->width * TILE_SIZE) * 0.25 >= WIDTH / 2)
-		data->scaler_width = 0.10;
-	draw_walls(data, DARK_GREEN);
-	draw_player(data);
 }

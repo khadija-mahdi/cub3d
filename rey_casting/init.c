@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 07:06:56 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/01 21:08:31 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/02 20:53:24 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,6 @@ int	get_height_map(t_data *data)
 	return (height);
 }
 
-int	get_walls_nbr(t_data *data)
-{
-	int	i;
-	int	j;
-	int	walls_nbr;
-
-	i = 0;
-	j = 0;
-	while (data->map->map && data->map->map[i])
-	{
-		j = 0;
-		while (data->map->map[i][j])
-		{
-			if (data->map->map[i][j] == '1')
-				walls_nbr++;
-			j++;
-		}
-		i++;
-	}
-	return (walls_nbr);
-}
-
 void	init_window_img(t_data *data)
 {
 	data->img = malloc(sizeof(t_img));
@@ -70,13 +48,12 @@ void	init_window_img(t_data *data)
 		return ;
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT,
-		"The_KM_game!");
+			"The_KM_game!");
 	data->img->img_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
 	data->img->addr = mlx_get_data_addr(data->img->img_ptr,
-		&data->img->bits_per_pixel, &data->img->line_length,
-		&data->img->endian);
+			&data->img->bits_per_pixel, &data->img->line_length,
+			&data->img->endian);
 }
-
 
 t_data	*init_data(t_data *data, struct s_map_info *map)
 {
@@ -84,8 +61,8 @@ t_data	*init_data(t_data *data, struct s_map_info *map)
 	if (!data)
 		return (NULL);
 	data->map = map;
+	data->fov = (M_PI / 3);
 	map->height = 0;
-	data->wall_nbr = get_walls_nbr(data);
 	map->height = get_height_map(data);
 	init_window_img(data);
 	data->rays = malloc(sizeof(t_rey *) * WIDTH);
@@ -95,7 +72,6 @@ t_data	*init_data(t_data *data, struct s_map_info *map)
 	data->dir_keys[0] = -1;
 	data->dir_keys[1] = -1;
 	data->dir_keys[2] = -1;
-	data->dir_mouse[0] = -1;
-	data->dir_mouse[1] = -1;
+	data->dir_mouse[0] = 0;
 	return (data);
 }

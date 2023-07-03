@@ -6,7 +6,7 @@
 #    By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 02:03:16 by moel-asr          #+#    #+#              #
-#    Updated: 2023/07/01 21:29:27 by kmahdi           ###   ########.fr        #
+#    Updated: 2023/07/02 20:16:13 by kmahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC = main.c\
 	./rey_casting/mandatory/player_movement.c\
 	./rey_casting/mandatory/collision.c\
 	./rey_casting/mandatory/wall_casting.c\
+	./rey_casting/mandatory/move_directions.c\
 	./get_next_line/get_next_line.c \
 	./parser/parse_colors.c \
 	./parser/parse_map.c \
@@ -37,7 +38,8 @@ BONUS_SRS = ./rey_casting/bonus/mini_map_bonus.c\
 			./rey_casting/bonus/draw_bonus.c\
 			./rey_casting/bonus/player_movement_bonus.c\
 			./rey_casting/bonus/wall_casting_bonus.c\
-	./get_next_line/get_next_line.c \
+			./rey_casting/bonus/wall_collisions_bonus.c\
+			./get_next_line/get_next_line.c \
 			./parser/parse_colors.c \
 			./parser/parse_map.c \
 			./parser/parse_path_and_map.c \
