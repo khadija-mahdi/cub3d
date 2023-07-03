@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 18:05:03 by moel-asr          #+#    #+#             */
-/*   Updated: 2023/06/15 19:08:03 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/03 02:49:58 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	count_map_lines(t_map_info *data)
 
 void	read_and_check_map(char **line, t_map_info *data, int fd)
 {
-	int	i;
-	char *dup_line;
+	int		i;
+	char	*dup_line;
 
 	i = 0;
 	data->width = 0;
@@ -79,12 +79,12 @@ void	check_map_walls(t_map_info *data)
 		{
 			if (data->map[i][j] == '0')
 			{
-				if ((j == 0) || (j == (ft_strlen(data->map[i]) - 1)) || \
-					(i == 0) || (i == (data->map_lines_num - 1)) || \
-					(is_valid_character(data->map[i][j - 1])) || \
-					(is_valid_character(data->map[i][j + 1])) || \
-					(is_valid_character(data->map[i - 1][j])) || \
-					(is_valid_character(data->map[i + 1][j])))
+				if ((j == 0) || (j == (ft_strlen(data->map[i]) - 1)) || (i == 0)
+					|| (i == (data->map_lines_num - 1))
+					|| (is_valid_character(data->map[i][j - 1]))
+					|| (is_valid_character(data->map[i][j + 1]))
+					|| (is_valid_character(data->map[i - 1][j]))
+					|| (is_valid_character(data->map[i + 1][j])))
 					exit_msg("Error\nThe map is not closed\n", 1);
 			}
 			j++;
@@ -110,12 +110,12 @@ void	check_map_characters(t_map_info *data)
 				exit_msg("Error\nUnexpected character found in the map\n", 1);
 			else if (is_valid_player_position(data->map[i][j]) == 0)
 			{
-				if ((j == 0) || (j == (ft_strlen(data->map[i]) - 1)) || \
-					(i == 0) || (i == (data->map_lines_num - 1)) || \
-					(is_valid_character(data->map[i][j - 1])) || \
-					(is_valid_character(data->map[i][j + 1])) || \
-					(is_valid_character(data->map[i - 1][j])) || \
-					(is_valid_character(data->map[i + 1][j])))
+				if ((j == 0) || (j == (ft_strlen(data->map[i]) - 1)) || (i == 0)
+					|| (i == (data->map_lines_num - 1))
+					|| (is_valid_character(data->map[i][j - 1]))
+					|| (is_valid_character(data->map[i][j + 1]))
+					|| (is_valid_character(data->map[i - 1][j]))
+					|| (is_valid_character(data->map[i + 1][j])))
 					exit_msg("Error\nThe player position is not valid\n", 1);
 				data->x = j;
 				data->y = i;

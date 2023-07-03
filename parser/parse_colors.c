@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 02:32:05 by moel-asr          #+#    #+#             */
-/*   Updated: 2023/06/15 17:55:46 by moel-asr         ###   ########.fr       */
+/*   Updated: 2023/07/03 02:49:50 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void check_colors(t_map_info *data)
+void	check_colors(t_map_info *data)
 {
-	char *floor_color;
-	char *ceiling_color;
-	int i;
-	int	j;
-	int	commas;
-	char **color_parts;
+	char	*floor_color;
+	char	*ceiling_color;
+	int		i;
+	int		j;
+	int		commas;
+	char	**color_parts;
 
 	i = 0;
 	while (i < 6)
@@ -57,10 +57,10 @@ void check_colors(t_map_info *data)
 	free(ceiling_color);
 }
 
-void check_rgb_colors_format(t_map_info *data)
+void	check_rgb_colors_format(t_map_info *data)
 {
-	int count;
-	int i;
+	int	count;
+	int	i;
 
 	count = 0;
 	i = 0;
