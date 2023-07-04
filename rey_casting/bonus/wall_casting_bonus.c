@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 18:39:49 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/03 03:35:09 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/04 01:24:18 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,35 +34,22 @@ void	cast_single_ray(t_data *data, float ray_angle, int index)
 	}
 }
 
-void	draw_top_half_wall(int i, double ds, t_data *data, t_rey *rays)
+void	draw_3d_map(int i, double ds, t_data *data, t_rey *rays)
 {
-	double	half_hight;
+	double	index;
 
-	half_hight = (HEIGHT / 2);
-	while (half_hight > 0)
+	index = 0;
+	while (index < HEIGHT)
 	{
-		if (half_hight > ((HEIGHT / 2) - ds))
-			my_mlx_pixel_put(data->img, i, half_hight, 0Xffffff);
-		else
-			my_mlx_pixel_put(data->img, i, half_hight, convert_color(data,
+		if (index < ((HEIGHT / 2) - (ds / 2)))
+			my_mlx_pixel_put(data->img, i, index, convert_color(data,
 					data->map->ceiling_rgb));
-		half_hight--;
-	}
-}
-
-void	draw_bottom_half_wall(int i, double ds, t_data *data, t_rey *rays)
-{
-	double	half_hight;
-
-	half_hight = (HEIGHT / 2);
-	while (half_hight < HEIGHT)
-	{
-		if (half_hight < ((HEIGHT / 2) + ds))
-			my_mlx_pixel_put(data->img, i, half_hight, 0Xffffff);
-		else
-			my_mlx_pixel_put(data->img, i, half_hight,
+		else if (index > ((HEIGHT / 2) + (ds / 2)))
+			my_mlx_pixel_put(data->img, i, index,
 				convert_color(data, data->map->floor_rgb));
-		half_hight++;
+		else
+			my_mlx_pixel_put(data->img, i, index, DARK_BLUE);
+		index++;
 	}
 }
 
@@ -71,7 +58,7 @@ void	cast_rays_bonus(t_data *data)
 	double	ray_angle;
 	double	hight_wall_hit;
 	int		i;
-	double	camera_line;
+	double	camera_len;
 
 	ray_angle = data->player.rotation_angle - (data->fov / 2);
 	i = 0;
@@ -83,10 +70,9 @@ void	cast_rays_bonus(t_data *data)
 		cast_single_ray(data, ray_angle, i);
 		data->rays[i]->distance = data->rays[i]->distance
 			* cos(data->rays[i]->ray_angle - data->player.rotation_angle);
-		camera_line = (WIDTH / 2) / tan(data->fov);
-		hight_wall_hit = (TILE_SIZE / data->rays[i]->distance) * camera_line;
-		draw_top_half_wall(i, hight_wall_hit, data, data->rays[i]);
-		draw_bottom_half_wall(i, hight_wall_hit, data, data->rays[i]);
+		camera_len = (WIDTH / 2) / tan(data->fov / 2);
+		hight_wall_hit = (TILE_SIZE / data->rays[i]->distance) * camera_len;
+		draw_3d_map(i, hight_wall_hit, data, data->rays[i]);
 		ray_angle += (data->fov / WIDTH);
 		i++;
 	}

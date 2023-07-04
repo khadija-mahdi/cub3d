@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 07:06:56 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/02 20:53:24 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/04 05:21:22 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	get_height_map(t_data *data)
 void	init_window_img(t_data *data)
 {
 	data->img = malloc(sizeof(t_img));
-	if (!data->map)
+	if (!data->img)
 		return ;
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT,
@@ -55,6 +55,21 @@ void	init_window_img(t_data *data)
 			&data->img->endian);
 }
 
+void	init_textures_imgs(t_data *data)
+{
+	data->img_text = malloc(sizeof(t_img));
+	if (!data->img_text)
+		exit_msg("Failed to allocate memory.", 1);
+	data->img_text->img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "../file.xpm", &data->block_size_x, &data->block_size_y);
+	if (!data->img_text->img_ptr)
+		exit_msg("Failed to load image.", 1);
+	data->img_text->addr = mlx_get_data_addr(data->img_text->img_ptr,
+			&data->img_text->bits_per_pixel, &data->img_text->line_length,
+			&data->img_text->endian);
+	if (!data->img_text->addr)
+		exit_msg("Failed to allocate img adder.", 1);
+}
+
 t_data	*init_data(t_data *data, struct s_map_info *map)
 {
 	data = malloc(sizeof(t_data));
@@ -63,8 +78,11 @@ t_data	*init_data(t_data *data, struct s_map_info *map)
 	data->map = map;
 	data->fov = (M_PI / 3);
 	map->height = 0;
+	data->block_size_x = 64;
+	data->block_size_y = 64;
 	map->height = get_height_map(data);
 	init_window_img(data);
+	init_textures_imgs(data);
 	data->rays = malloc(sizeof(t_rey *) * WIDTH);
 	if (!data->rays)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:28:36 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/03 03:34:39 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/04 04:59:22 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_rey
 	int					facing_right;
 	t_hor_rey			hor_ray;
 	t_ver_rey			ver_ray;
+	int					is_vert;
+	int					is_hors;
 }						t_rey;
 
 // player structs -------------------------------------->
@@ -121,6 +123,9 @@ typedef struct s_data
 	double				scaler_width;
 	double				scaler_hight;
 	double				fov;
+	t_img				*img_text;
+	int					block_size_x;
+	int					block_size_y;
 
 }						t_data;
 
@@ -172,5 +177,6 @@ void	move_up(t_data *data);
 void	move_down(t_data *data);
 void	defend_factor(t_data *data);
 int		convert_color(t_data *dat, char **rgb);
+void	init_textures_imgs(t_data *data);
 
 #endif

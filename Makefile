@@ -6,7 +6,7 @@
 #    By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 02:03:16 by moel-asr          #+#    #+#              #
-#    Updated: 2023/07/02 20:16:13 by kmahdi           ###   ########.fr        #
+#    Updated: 2023/07/04 01:40:48 by kmahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC = main.c\
 	./rey_casting/vertical_rays.c\
 	./rey_casting/horizontal_rays.c\
 	./rey_casting/init.c\
+	./rey_casting/textures.c\
 
 BONUS_SRS = ./rey_casting/bonus/mini_map_bonus.c\
 			./rey_casting/bonus/main_bonus.c\
