@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 18:39:49 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/06 06:50:04 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/06 17:23:51 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ void	render_mini_map(t_data *data)
 		data->scaler_width = 0.1;
 		data->scaler_hight = 0.1;
 	}
-	else if ((data->map->height * TILE_SIZE) * 0.25 > HEIGHT
-		|| (data->map->width * TILE_SIZE) * 0.25 > WIDTH)
-		new = get_small_map(data->map, data);
+	else if ((data->map->height * TILE_SIZE) * 0.25 > HEIGHT)
+	{
+		data->scaler_width = 0.06;
+		data->scaler_hight = 0.06;
+	}
 	draw_walls(data, DARK_CYAN, new);
 	draw_player(data, new);
 }

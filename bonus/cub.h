@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 21:58:20 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/06 06:52:44 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/06 17:19:08 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		release_mouse(int button, int x, int y, t_data *data);
 void	render(t_data *data);
 int		loop_hook(t_data *data);
 void	render_mini_map(t_data *data);
+void	render_position(t_data *data);
 
 /* minimap*/
 void	draw_player(t_data *data, char **new);
