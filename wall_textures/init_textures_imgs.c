@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures_imgs.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 01:02:51 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/06 17:26:15 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/06 17:38:52 by moel-asr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ t_textures	*init_textures_images(t_data *data)
 	textures->texture_south = malloc(sizeof(t_img));
 	textures->texture_east = malloc(sizeof(t_img));
 	textures->texture_west = malloc(sizeof(t_img));
-	if (!textures->texture_north || !textures->texture_south
-			|| !textures->texture_east || !textures->texture_west || !textures)
+	if (!textures->texture_north || !textures->texture_south \
+		|| !textures->texture_east || !textures->texture_west || !textures)
 		exit_msg("Failed to allocate memory.", 1);
 	if (textures->tex_dir.is_north)
 		texture_image(data, data->map->textures_path[0],
 			textures->texture_north, textures);
 	if (textures->tex_dir.is_south)
-		texture_image(data, data->map->textures_path[1],
-textures->texture_south, textures);
+		texture_image(data, data->map->textures_path[1], \
+		textures->texture_south, textures);
 	if (textures->tex_dir.is_east)
 		texture_image(data, data->map->textures_path[2], textures->texture_west,
 			textures);
