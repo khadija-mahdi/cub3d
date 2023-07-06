@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collision.c                                        :+:      :+:    :+:   */
+/*   wall_casting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/18 19:22:11 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/02 21:02:26 by kmahdi           ###   ########.fr       */
+/*   Created: 2023/07/01 21:04:25 by kmahdi            #+#    #+#             */
+/*   Updated: 2023/07/06 05:54:34 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../reycasting.h"
+#include "reycasting.h"
 
 int	wall_collision(t_data *data, double y, double x)
 {
@@ -36,38 +36,6 @@ int	wall_collision(t_data *data, double y, double x)
 		return (1);
 }
 
-int	key_release(int key_code, t_data *data)
-{
-	if (key_code == LEFT_ARROW || key_code == RIGHT_ARROW)
-		data->dir_keys[0] = -1;
-	if (key_code == D_RIGHT || key_code == A_LEFT)
-		data->dir_keys[1] = -1;
-	if (key_code == W_UP || key_code == S_DOWN)
-		data->dir_keys[2] = -1;
-	return (0);
-}
-
-void	get_directions(t_rey *rays, double angle)
-{
-	angle = normalize_angle(angle);
-	rays->facing_up = 0;
-	rays->facing_down = 0;
-	rays->facing_left = 0;
-	rays->facing_right = 0;
-	rays->facing_down = ((angle > 0) && (angle < M_PI));
-	rays->facing_up = !rays->facing_down;
-	rays->facing_right = ((angle < 0.5 * M_PI) || (angle > 1.5 * M_PI));
-	rays->facing_left = !rays->facing_right;
-}
-
-double	normalize_angle(double angle)
-{
-	angle = remainder(angle, (2 * M_PI));
-	if (angle < 0)
-		angle += (2 * M_PI);
-	return (angle);
-}
-
 int	hit_wall(t_data *data, double y, double x)
 {
 	int	y1;
@@ -83,4 +51,31 @@ int	hit_wall(t_data *data, double y, double x)
 	if ((data->map->map[y1][x1] != '\0' && data->map->map[y1][x1] == '1'))
 		return (0);
 	return (1);
+}
+
+void	cast_rays(t_data *data)
+{
+	int		i;
+	double	ray_angle;
+	double	hight_wall_hit;
+	double	camera_len;
+
+	ray_angle = data->player.rotation_angle - (data->fov / 2);
+	i = 0;
+	while (i < WIDTH)
+	{
+		data->rays[i] = malloc(sizeof(t_rey));
+		if (!data->rays[i])
+			return ;
+		cast_single_ray(data, ray_angle, i);
+		data->rays[i]->distance = data->rays[i]->distance
+			* cos(data->rays[i]->ray_angle - data->player.rotation_angle);
+		camera_len = (WIDTH / 2) / tan(data->fov / 2);
+		hight_wall_hit = (TILE_SIZE / data->rays[i]->distance) * camera_len;
+		data->textures->hight_wall_text = (int)hight_wall_hit;
+		draw_3d_map(i, data, data->rays[i]);
+		ray_angle += (data->fov / WIDTH);
+		free(data->rays[i]);
+		i++;
+	}
 }

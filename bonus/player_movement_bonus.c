@@ -6,11 +6,11 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 07:45:24 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/02 01:38:05 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/06 03:58:11 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../reycasting.h"
+#include "cub.h"
 
 void	player_left_right(t_data *data, int key)
 {
@@ -23,9 +23,9 @@ void	player_left_right(t_data *data, int key)
 				/ 2) * MOVE_SPEED;
 		new_y = (data->player.player_y) + sin(data->player.rotation_angle + M_PI
 				/ 2) * MOVE_SPEED;
-		if (wall_collision(data, new_y, data->player.player_x))
+		if (collision(data, new_y, data->player.player_x))
 			data->player.player_y = new_y;
-		if (wall_collision(data, data->player.player_y, new_x))
+		if (collision(data, data->player.player_y, new_x))
 			data->player.player_x = new_x;
 	}
 	else if (key == 0)
@@ -34,9 +34,9 @@ void	player_left_right(t_data *data, int key)
 				/ 2) * MOVE_SPEED;
 		new_y = (data->player.player_y) - sin(data->player.rotation_angle + M_PI
 				/ 2) * MOVE_SPEED;
-		if (wall_collision(data, new_y, data->player.player_x))
+		if (collision(data, new_y, data->player.player_x))
 			data->player.player_y = new_y;
-		if (wall_collision(data, data->player.player_y, new_x))
+		if (collision(data, data->player.player_y, new_x))
 			data->player.player_x = new_x;
 	}
 }
@@ -52,9 +52,9 @@ void	player_up_down(t_data *data, int key)
 			* MOVE_SPEED;
 		new_y = (data->player.player_y) - sin(data->player.rotation_angle)
 			* MOVE_SPEED;
-		if (wall_collision(data, new_y, data->player.player_x))
+		if (collision(data, new_y, data->player.player_x))
 			data->player.player_y = new_y;
-		if (wall_collision(data, data->player.player_y, new_x))
+		if (collision(data, data->player.player_y, new_x))
 			data->player.player_x = new_x;
 	}
 	if (key == 1)
@@ -63,9 +63,9 @@ void	player_up_down(t_data *data, int key)
 			* MOVE_SPEED;
 		new_y = (data->player.player_y) + sin(data->player.rotation_angle)
 			* MOVE_SPEED;
-		if (wall_collision(data, new_y, data->player.player_x))
+		if (collision(data, new_y, data->player.player_x))
 			data->player.player_y = new_y;
-		if (wall_collision(data, data->player.player_y, new_x))
+		if (collision(data, data->player.player_y, new_x))
 			data->player.player_x = new_x;
 	}
 }

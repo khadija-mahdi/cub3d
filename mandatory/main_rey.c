@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_movement.c                                  :+:      :+:    :+:   */
+/*   main_rey.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/16 07:45:24 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/02 20:26:55 by kmahdi           ###   ########.fr       */
+/*   Created: 2023/06/09 12:26:27 by kmahdi            #+#    #+#             */
+/*   Updated: 2023/07/06 07:10:10 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../reycasting.h"
+#include "reycasting.h"
 
-void	player_pos(t_data *data)
+void	render_walls(t_data *data)
+{
+	mlx_destroy_image(data->mlx_ptr, data->img->img_ptr);
+	data->img->img_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+	data->img->addr = mlx_get_data_addr(data->img->img_ptr,
+			&data->img->bits_per_pixel, &data->img->line_length,
+			&data->img->endian);
+	cast_rays(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img_ptr, 0,
+		0);
+}
+
+void	render_player_position(t_data *data)
 {
 	if (data->dir_keys[0] == RIGHT_ARROW)
 	{
@@ -36,25 +48,27 @@ void	player_pos(t_data *data)
 		move_down(data);
 }
 
-int	key_press(int key_code, t_data *data)
-{
-	if (key_code == ESC)
-		exit_msg("exit with esc key", 0);
-	if (key_code == LEFT_ARROW || key_code == RIGHT_ARROW)
-		data->dir_keys[0] = key_code;
-	else if (key_code == D_RIGHT || key_code == A_LEFT)
-		data->dir_keys[1] = key_code;
-	else if (key_code == W_UP || key_code == S_DOWN)
-		data->dir_keys[2] = key_code;
-	return (0);
-}
-
 int	key_code(t_data *data)
 {
 	mlx_hook(data->win_ptr, 2, 1L << 1, key_press, data);
 	mlx_hook(data->win_ptr, 3, 1L << 0, key_release, data);
 	mlx_hook(data->win_ptr, 17, 0, exit_program, data);
-	player_pos(data);
-	render_player(data);
+	render_player_position(data);
+	render_walls(data);
 	return (0);
+}
+
+void	game_running(t_data *data)
+{
+	mlx_loop_hook(data->mlx_ptr, key_code, data);
+	mlx_loop(data->mlx_ptr);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+}
+
+void	rey_casting(struct s_map_info *map)
+{
+	t_data	*data;
+
+	data = init_data(data, map);
+	game_running(data);
 }

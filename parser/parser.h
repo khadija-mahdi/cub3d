@@ -13,7 +13,8 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "../cub3d.h"
+# include "../includes/cub3d.h"
+
 
 typedef struct s_texture_info
 {
@@ -43,6 +44,8 @@ typedef struct s_map_info
 	t_texture_info	texture_data;
 	double			x;
 	double			y;
+	char				**textures_path;
+
 }	t_map_info;
 
 /* validate path and map */

@@ -6,11 +6,11 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 20:12:59 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/02 20:27:52 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/06 07:10:45 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../reycasting.h"
+#include "reycasting.h"
 
 void	move_left(t_data *data)
 {

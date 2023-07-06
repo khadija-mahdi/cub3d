@@ -6,11 +6,11 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 01:41:59 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/02 20:01:13 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/06 07:11:50 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reycasting.h"
+#include "includes/cub3d.h"
 
 void	horizontal_intersection(t_rey *rays, t_data *data, double ray_angle)
 {

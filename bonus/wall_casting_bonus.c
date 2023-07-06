@@ -6,51 +6,47 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 18:39:49 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/04 01:24:18 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/06 06:50:04 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../reycasting.h"
+#include "cub.h"
 
-void	cast_single_ray(t_data *data, float ray_angle, int index)
+int	handle_mouse_click(int button, int x, int y, struct s_data *data)
 {
-	get_directions(data->rays[index], ray_angle);
-	horizontal_ray(data, data->rays[index], ray_angle);
-	vertical_ray(data, data->rays[index], ray_angle);
-	if (data->rays[index]->ver_ray.distance
-		< data->rays[index]->hor_ray.distance)
-	{
-		data->rays[index]->wall_x = data->rays[index]->ver_ray.wall_x;
-		data->rays[index]->wall_y = data->rays[index]->ver_ray.wall_y;
-		data->rays[index]->distance = data->rays[index]->ver_ray.distance;
-		data->rays[index]->ray_angle = ray_angle;
-	}
-	else
-	{
-		data->rays[index]->wall_x = data->rays[index]->hor_ray.wall_x;
-		data->rays[index]->wall_y = data->rays[index]->hor_ray.wall_y;
-		data->rays[index]->distance = data->rays[index]->hor_ray.distance;
-		data->rays[index]->ray_angle = ray_angle;
-	}
+	if (button == LEFT_CLICK || button == RIGHT_CLICK)
+		data->dir_mouse[0] = button;
+	return (0);
 }
 
-void	draw_3d_map(int i, double ds, t_data *data, t_rey *rays)
+int	release_mouse(int button, int x, int y, struct s_data *data)
 {
-	double	index;
+	if (button == LEFT_CLICK || button == RIGHT_CLICK)
+		data->dir_mouse[0] = 0;
+	return (0);
+}
 
-	index = 0;
-	while (index < HEIGHT)
+void	render_mini_map(t_data *data)
+{
+	char	**new;
+
+	new = new;
+	data->scaler_hight = 0.25;
+	data->scaler_width = 0.25;
+	new = data->map->map;
+	if (((data->map->height * TILE_SIZE) * 0.25 >= HEIGHT / 2
+			&& (data->map->height * TILE_SIZE) * 0.25 <= HEIGHT)
+		|| ((data->map->width * TILE_SIZE) * 0.25 >= WIDTH / 2
+			&& (data->map->width * TILE_SIZE) * 0.25 <= WIDTH))
 	{
-		if (index < ((HEIGHT / 2) - (ds / 2)))
-			my_mlx_pixel_put(data->img, i, index, convert_color(data,
-					data->map->ceiling_rgb));
-		else if (index > ((HEIGHT / 2) + (ds / 2)))
-			my_mlx_pixel_put(data->img, i, index,
-				convert_color(data, data->map->floor_rgb));
-		else
-			my_mlx_pixel_put(data->img, i, index, DARK_BLUE);
-		index++;
+		data->scaler_width = 0.1;
+		data->scaler_hight = 0.1;
 	}
+	else if ((data->map->height * TILE_SIZE) * 0.25 > HEIGHT
+		|| (data->map->width * TILE_SIZE) * 0.25 > WIDTH)
+		new = get_small_map(data->map, data);
+	draw_walls(data, DARK_CYAN, new);
+	draw_player(data, new);
 }
 
 void	cast_rays_bonus(t_data *data)
@@ -72,7 +68,8 @@ void	cast_rays_bonus(t_data *data)
 			* cos(data->rays[i]->ray_angle - data->player.rotation_angle);
 		camera_len = (WIDTH / 2) / tan(data->fov / 2);
 		hight_wall_hit = (TILE_SIZE / data->rays[i]->distance) * camera_len;
-		draw_3d_map(i, hight_wall_hit, data, data->rays[i]);
+		data->textures->hight_wall_text = (int)hight_wall_hit;
+		draw_3d_map(i, data, data->rays[i]);
 		ray_angle += (data->fov / WIDTH);
 		i++;
 	}

@@ -6,7 +6,7 @@
 #    By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 02:03:16 by moel-asr          #+#    #+#              #
-#    Updated: 2023/07/04 01:40:48 by kmahdi           ###   ########.fr        #
+#    Updated: 2023/07/06 07:18:39 by kmahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,9 @@ NAME = cub3D
 NAME_BONUS = cub3D_bonus
 
 SRC = main.c\
-	./rey_casting/mandatory/main_rey.c\
-	./rey_casting/mandatory/draw.c\
-	./rey_casting/mandatory/player_movement.c\
-	./rey_casting/mandatory/collision.c\
-	./rey_casting/mandatory/wall_casting.c\
-	./rey_casting/mandatory/move_directions.c\
+	./mandatory/main_rey.c\
+	./mandatory/wall_casting.c\
+	./mandatory/move_directions.c\
 	./get_next_line/get_next_line.c \
 	./parser/parse_colors.c \
 	./parser/parse_map.c \
@@ -27,30 +24,34 @@ SRC = main.c\
 	./parser/parse_texture_utils.c \
 	./parser/parser_utils.c \
 	./parser/parse_texture.c \
-	./rey_casting/utils.c\
-	./rey_casting/vertical_rays.c\
-	./rey_casting/horizontal_rays.c\
-	./rey_casting/init.c\
-	./rey_casting/textures.c\
+	./utils.c\
+	./vertical_rays.c\
+	./horizontal_rays.c\
+	./init.c\
+	./textures.c\
+	./wall_textures/init_textures_imgs.c\
+	./rey_casting.c\
 
-BONUS_SRS = ./rey_casting/bonus/mini_map_bonus.c\
-			./rey_casting/bonus/main_bonus.c\
-			./rey_casting/bonus/collision_bonus.c\
-			./rey_casting/bonus/draw_bonus.c\
-			./rey_casting/bonus/player_movement_bonus.c\
-			./rey_casting/bonus/wall_casting_bonus.c\
-			./rey_casting/bonus/wall_collisions_bonus.c\
-			./get_next_line/get_next_line.c \
+BONUS_SRS = ./bonus/mini_map_bonus.c\
 			./parser/parse_colors.c \
 			./parser/parse_map.c \
 			./parser/parse_path_and_map.c \
 			./parser/parse_texture_utils.c \
 			./parser/parser_utils.c \
 			./parser/parse_texture.c \
-			./rey_casting/utils.c\
-			./rey_casting/vertical_rays.c\
-			./rey_casting/horizontal_rays.c\
-			./rey_casting/init.c\
+			./bonus/main_bonus.c\
+			./bonus/collision_bonus.c\
+			./bonus/draw_bonus.c\
+			./bonus/player_movement_bonus.c\
+			./bonus/wall_casting_bonus.c\
+			./get_next_line/get_next_line.c \
+			./utils.c\
+			./vertical_rays.c\
+			./horizontal_rays.c\
+			./init.c\
+			./wall_textures/init_textures_imgs.c\
+			./textures.c\
+			./rey_casting.c\
 
 
 OBJ_DIR = files_objects
@@ -68,7 +69,7 @@ CC = cc
 
 MLX= -lmlx -framework OpenGL -framework AppKit
 
-# DIB= -fsanitize=address -g3
+DIB= -fsanitize=address -g3
 
 $(RM) = rm -f 
   
@@ -90,7 +91,7 @@ $(NAME_BONUS): $(OBJ_BONUS)
 	make -C minilibft
 	$(CC) $(CFLAGS) minilibft/minilibft.a $(MLX) $(OBJ_BONUS) $(DIB) -o $(NAME_BONUS)
 
-bonus: $(NAME_BONUS) $(NAME)
+bonus: $(NAME_BONUS)
 
 clean:
 	$(RM) $(OBJ) $(OBJ_BONUS)
@@ -104,5 +105,5 @@ fclean: clean
 	@$(RM) -rf $(OBJ_DIR_BONUS)
 	make fclean -C minilibft
 
-re: fclean bonus
+re: fclean  all bonus
 

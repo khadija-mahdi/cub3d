@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vertical_rays_bonus.c                              :+:      :+:    :+:   */
+/*   vertical_rays.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 01:34:35 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/02 01:15:16 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/06 05:18:16 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reycasting.h"
+#include "includes/cub3d.h"
 
 void	vertical_intersection(t_rey *rays, t_data *data, double ray_angle)
 {

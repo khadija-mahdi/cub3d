@@ -6,11 +6,11 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:59:00 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/03 03:34:00 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/06 07:20:27 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reycasting.h"
+#include "includes/cub3d.h"
 
 void	exit_msg(char *msg, int status)
 {
@@ -18,7 +18,7 @@ void	exit_msg(char *msg, int status)
 	exit(status);
 }
 
-void	free_list(void **list)
+void	free_list(char **list)
 {
 	int	i;
 
