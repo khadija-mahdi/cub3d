@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 04:19:42 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/06 07:09:30 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/06 14:52:22 by moel-asr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,34 +42,6 @@ void	start_the_game(t_data *data)
 	mlx_loop_hook(data->mlx_ptr, loop_hook, data);
 	mlx_loop(data->mlx_ptr);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-}
-
-void	get_textures_path(t_map_info *data)
-{
-	int	i;
-	int	j;
-	int	x;
-
-	x = 0;
-	i = 0;
-	data->textures_path = malloc(sizeof(char *) * 4);
-	while (data->textures && data->textures[i])
-	{
-		j = 0;
-		while (data->textures[i][j])
-		{
-			if (data->textures[i][j] == '.')
-			{
-				data->textures_path[x++] = ft_substr(data->textures[i], j,
-						ft_strlen(data->textures[i]));
-				break ;
-			}
-			j++;
-		}
-		i++;
-	}
-	data->textures_path[x++] = NULL;
-	free_list(data->textures);
 }
 
 int	main(int argc, char **argv)
