@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 07:18:16 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/06 07:23:13 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/07 23:47:22 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ void	cast_single_ray(t_data *data, float ray_angle, int index)
 
 unsigned int	get_img_color(t_data *data, t_img *img)
 {
-	char	dst;
+	char	*dst;
 
 	if (data->textures->offset_x < 0
 		|| data->textures->offset_x >= data->textures->block_size_x
 		|| data->textures->offset_y < 0
 		|| data->textures->offset_y >= data->textures->block_size_y)
 		return (0);
-	dst = *(img->addr + (data->textures->offset_y * img->line_length
-				+ data->textures->offset_x * (img->bits_per_pixel / 8)));
-	return ((unsigned int)dst);
+	dst = ((img->addr + (data->textures->offset_y * img->line_length
+					+ data->textures->offset_x * (img->bits_per_pixel / 8))));
+	return (*(unsigned int *)dst);
 }
 
 unsigned int	get_directions_texture(t_data *data, int i)
@@ -65,23 +65,23 @@ unsigned int	get_directions_texture(t_data *data, int i)
 	return (1);
 }
 
-void	draw_cube(t_data *data, int start_pos, int end_pos, int i)
+void	draw_cube(t_data *data, double start_pos, double end_pos, int i)
 {
-	int				index;
-	unsigned int	color;
-	int				dis;
+	double				index;
+	unsigned int		color;
+	double				dis;
 
+	index = start_pos;
 	if (data->rays[i]->is_vert)
 		data->textures->offset_x = (int)data->rays[i]->wall_y
-			% data->textures->block_size_y;
+			% TILE_SIZE;
 	else
 		data->textures->offset_x = (int)data->rays[i]->wall_x
-			% data->textures->block_size_x;
-	index = start_pos;
+			% TILE_SIZE;
 	while (index < end_pos)
 	{
 		dis = index + (data->textures->hight_wall_text / 2) - (HEIGHT / 2);
-		data->textures->offset_y = dis * ((double)data->textures->block_size_y
+		data->textures->offset_y = dis * ((float)TILE_SIZE
 				/ data->textures->hight_wall_text);
 		color = get_directions_texture(data, i);
 		my_mlx_pixel_put(data->img, i, index, color);
@@ -91,9 +91,9 @@ void	draw_cube(t_data *data, int start_pos, int end_pos, int i)
 
 void	draw_3d_map(int i, t_data *data, t_rey *rays)
 {
-	double	index;
-	int		start_pos;
-	int		end_pos;
+	double		index;
+	double		start_pos;
+	double		end_pos;
 
 	start_pos = (HEIGHT / 2) - (data->textures->hight_wall_text / 2);
 	if (start_pos < 0)

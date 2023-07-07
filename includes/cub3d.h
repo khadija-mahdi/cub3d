@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 09:57:18 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/06 17:37:49 by moel-asr         ###   ########.fr       */
+/*   Updated: 2023/07/07 23:44:55 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void			horizontal_ray(t_data *data, t_rey *rays, double angle);
 void			vertical_ray(t_data *data, t_rey *rays, double angle);
 double			normalize_angle(double angle);
 void			draw_3d_map(int i, t_data *data, t_rey *rays);
-void			draw_cube(t_data *data, int start_pos, int end_pos, int i);
+void			draw_cube(t_data *data, double start, double end, int i);
 void			get_directions(t_rey *rays, double angle);
 void			cast_single_ray(t_data *data, float angle, int index);
 

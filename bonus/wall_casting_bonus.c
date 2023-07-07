@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 18:39:49 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/06 17:23:51 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/07 23:45:23 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	cast_rays_bonus(t_data *data)
 			* cos(data->rays[i]->ray_angle - data->player.rotation_angle);
 		camera_len = (WIDTH / 2) / tan(data->fov / 2);
 		hight_wall_hit = (TILE_SIZE / data->rays[i]->distance) * camera_len;
-		data->textures->hight_wall_text = (int)hight_wall_hit;
+		data->textures->hight_wall_text = hight_wall_hit;
 		draw_3d_map(i, data, data->rays[i]);
 		ray_angle += (data->fov / WIDTH);
 		i++;
