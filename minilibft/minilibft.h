@@ -6,7 +6,7 @@
 /*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:35:08 by moel-asr          #+#    #+#             */
-/*   Updated: 2023/06/13 00:47:44 by moel-asr         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:05:16 by moel-asr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strchr(const char *str, int c);
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_strdup(const char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
-size_t	ft_strlen(const char *str);
+int		ft_strlen(const char *str);
 char	*ft_strstr(const char *str, const char *to_find);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
