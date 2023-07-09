@@ -3,17 +3,26 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+         #
+#    By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 02:03:16 by moel-asr          #+#    #+#              #
-#    Updated: 2023/07/09 20:44:31 by kmahdi           ###   ########.fr        #
+#    Updated: 2023/07/09 22:15:09 by moel-asr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
+
 NAME_BONUS = cub3D_bonus
 
-SRC = main.c\
+RM = rm
+
+CC = cc
+
+CFLAGS =  -Wall -Wextra -Werror -fsanitize=address -g3
+
+MLX = -lmlx -framework OpenGL -framework AppKit
+
+SRCS = main.c\
 	./mandatory/main_rey.c\
 	./wall_casting.c\
 	./mandatory/move_directions.c\
@@ -32,7 +41,7 @@ SRC = main.c\
 	./wall_textures/init_textures_imgs.c\
 	./rey_casting.c\
 
-BONUS_SRS = ./bonus/mini_map_bonus.c\
+BONUS_SRCS = ./bonus/mini_map_bonus.c\
 			./parser/parse_colors.c \
 			./parser/parse_map.c \
 			./parser/parse_path_and_map.c \
@@ -54,57 +63,30 @@ BONUS_SRS = ./bonus/mini_map_bonus.c\
 			./rey_casting.c\
 			./wall_casting.c\
 
+OBJS = $(SRCS:.c=.o)
 
+OBJS_BONUS = $(BONUS_SRCS:.c=.o)
 
-OBJ_DIR = files_objects
-OBJ_DIR_BONUS = files_objects_bonus
-
-
-OBJ= $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC))
-
-OBJ_BONUS= $(patsubst %.c,$(OBJ_DIR_BONUS)/%.o,$(BONUS_SRS))
-
-
-CC = cc
-
-CFLAGS=  -Wall -Wextra -Werror 
-
-MLX = -lm -lmlx -framework OpenGL -framework AppKit
-
-
-$(RM) = rm -f 
-  
 all: $(NAME)
 
-$(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
-
-$(OBJ_DIR_BONUS)/%.o: %.c
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
-
-$(NAME): $(OBJ)
+$(NAME): $(OBJS)
 	make -C minilibft
-	$(CC) $(CFLAGS) minilibft/minilibft.a $(MLX) $(OBJ) $(DIB) -o $(NAME)
+	$(CC) $(CFLAGS) minilibft/minilibft.a $(MLX) $(OBJS) -o $(NAME)
 
-$(NAME_BONUS): $(OBJ_BONUS)
+$(NAME_BONUS): $(OBJS_BONUS)
 	make -C minilibft
-	$(CC) $(CFLAGS) minilibft/minilibft.a $(MLX) $(OBJ_BONUS) $(DIB) -o $(NAME_BONUS)
+	$(CC) $(CFLAGS) minilibft/minilibft.a $(MLX) $(OBJS_BONUS) -o $(NAME_BONUS)
 
 bonus: $(NAME_BONUS)
 
 clean:
-	$(RM) $(OBJ) $(OBJ_BONUS)
-	@$(RM) -rf $(OBJ_DIR)
-	@$(RM) -rf $(OBJ_DIR_BONUS)
+	$(RM) -f $(OBJS) $(OBJS_BONUS)
 	make clean -C minilibft
 
 fclean: clean
-	$(RM) $(NAME) $(NAME_BONUS)
-	$(RM) -rf $(OBJ_DIR)
-	@$(RM) -rf $(OBJ_DIR_BONUS)
+	$(RM) -f $(NAME) $(NAME_BONUS)
 	make fclean -C minilibft
 
-re: fclean  all bonus
+re: fclean all bonus
 
+.PHONY: clean fclean bonus

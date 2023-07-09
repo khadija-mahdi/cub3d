@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 21:58:20 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/06 17:19:08 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/09 21:14:06 by moel-asr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	render_mini_map(t_data *data);
 void	render_position(t_data *data);
 
 /* minimap*/
-void	draw_player(t_data *data, char **new);
+void	draw_player(t_data *data);
 void	draw_walls(t_data *data, int clr, char **new);
 void	draw_line(t_data *data, int y_start, int x_start);
 char	**get_small_map(struct s_map_info *data, t_data *game_data);

@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 07:06:56 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/09 20:44:50 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/09 22:29:10 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,11 @@ void	init_window_img(t_data *data)
 	if (!data->img)
 		return ;
 	data->mlx_ptr = mlx_init();
-	if(!data->mlx_ptr)
-		exit_msg("failed to initialize the necessary resource to fire up the game, sorry for that, please try again later \n", 2)	;
+	if (!data->mlx_ptr)
+		exit_msg("failed to initialize the necessary resource to "
+			"fire up the game, sorry for that, please try again later \n", 2);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT,
 			"The_KM_game!");
-	data->img->img_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
-	data->img->addr = mlx_get_data_addr(data->img->img_ptr,
-			&data->img->bits_per_pixel, &data->img->line_length,
-			&data->img->endian);
 }
 
 t_data	*init_data(t_data *data, struct s_map_info *map)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 10:33:07 by moel-asr          #+#    #+#             */
-/*   Updated: 2023/07/09 04:07:35 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/09 20:51:43 by moel-asr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	get_textures_path(t_map_info *data)
 		{
 			if (data->textures[i][j] == '.')
 			{
-				n =  ft_substr(data->textures[i], j,
+				n = ft_substr(data->textures[i], j,
 						ft_strlen(data->textures[i]));
 				data->textures_path[x++] = ft_strdup(n);
 				free(n);
