@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 07:18:16 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/09 03:07:12 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/09 20:36:44 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,12 @@ void	draw_3d_map(int i, t_data *data)
 	if (end_pos > HEIGHT)
 		end_pos = HEIGHT;
 	index = 0;
-	while (index < start_pos)
+	while (index <= start_pos)
 		my_mlx_pixel_put(data->img, i, index++,
 			convert_color(data->map->ceiling_rgb));
 	draw_cube(data, start_pos, end_pos, i);
 	index = end_pos;
-	while (index > HEIGHT)
-		my_mlx_pixel_put(data->img, i, index--,
+	while (index < HEIGHT)
+		my_mlx_pixel_put(data->img, i, index++,
 			convert_color(data->map->floor_rgb));
 }

@@ -6,7 +6,7 @@
 #    By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 02:03:16 by moel-asr          #+#    #+#              #
-#    Updated: 2023/07/09 05:29:24 by kmahdi           ###   ########.fr        #
+#    Updated: 2023/07/09 20:44:31 by kmahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME_BONUS = cub3D_bonus
 
 SRC = main.c\
 	./mandatory/main_rey.c\
-	./mandatory/wall_casting.c\
+	./wall_casting.c\
 	./mandatory/move_directions.c\
 	./get_next_line/get_next_line.c \
 	./parser/parse_colors.c \
@@ -52,6 +52,8 @@ BONUS_SRS = ./bonus/mini_map_bonus.c\
 			./wall_textures/init_textures_imgs.c\
 			./textures.c\
 			./rey_casting.c\
+			./wall_casting.c\
+
 
 
 OBJ_DIR = files_objects
@@ -65,11 +67,10 @@ OBJ_BONUS= $(patsubst %.c,$(OBJ_DIR_BONUS)/%.o,$(BONUS_SRS))
 
 CC = cc
 
-CFLAGS=#  -Wall -Wextra -Werror 
+CFLAGS=  -Wall -Wextra -Werror 
 
 MLX = -lm -lmlx -framework OpenGL -framework AppKit
 
-# DIB= -fsanitize=address -g3
 
 $(RM) = rm -f 
   

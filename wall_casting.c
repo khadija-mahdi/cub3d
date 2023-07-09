@@ -6,11 +6,11 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 21:04:25 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/07 23:45:14 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/09 20:38:57 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reycasting.h"
+#include "includes/cub3d.h"
 
 int	wall_collision(t_data *data, double y, double x)
 {

@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 18:39:49 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/09 06:13:46 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/09 20:39:22 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,30 +51,3 @@ void	render_mini_map(t_data *data)
 	draw_player(data, data->map->map);
 }
 
-
-void	cast_rays_bonus(t_data *data)
-{
-	double	ray_angle;
-	double	hight_wall_hit;
-	int		i;
-	double	camera_len;
-
-	ray_angle = data->player.rotation_angle - (data->fov / 2);
-	i = 0;
-	while (i < WIDTH)
-	{
-		data->rays[i] = malloc(sizeof(t_rey));
-		if (!data->rays[i])
-			return ;
-		cast_single_ray(data, ray_angle, i);
-		data->rays[i]->distance = data->rays[i]->distance
-			* cos(data->rays[i]->ray_angle - data->player.rotation_angle);
-		camera_len = (WIDTH / 2) / tan(data->fov / 2);
-		hight_wall_hit = (TILE_SIZE / data->rays[i]->distance) * camera_len;
-		data->textures->hight_wall_text = hight_wall_hit;
-		draw_3d_map(i, data);
-		ray_angle += (data->fov / WIDTH);
-		free(data->rays[i]);
-		i++;
-	}
-}

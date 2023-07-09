@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 07:06:56 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/09 03:58:37 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/09 20:44:50 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,5 @@ t_data	*init_data(t_data *data, struct s_map_info *map)
 	data->dir_keys[1] = -1;
 	data->dir_keys[2] = -1;
 	data->dir_mouse[0] = 0;
-	// free_list(data->map->textures_path);
 	return (data);
 }

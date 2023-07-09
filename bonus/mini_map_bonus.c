@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:10:35 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/09 06:00:01 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/09 20:43:48 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,5 @@ void	draw_walls(t_data *data, int clr, char **new)
 			i++;
 		}
 		j++;
-	}
-}
-
-void cube(t_img *img, int x, int y, int size, int color)
-{
-	int i = (x - (size/2));
-	int j;
-	while(i < (x + (size/2)))
-	{
-		j = (y - (size/2));
-		while (j < (y + (size / 2)))
-		{
-			my_mlx_pixel_put(img, i, j, color);
-			j++;
-		}
-		i++;	
 	}
 }

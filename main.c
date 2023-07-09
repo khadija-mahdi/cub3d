@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:00:24 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/09 04:00:45 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/09 20:45:08 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,3 @@ int	main(int argc, char **argv)
 	get_textures_path(&data);
 	rey_casting(&data);
 }
-/*"The map 'map_test.cub' should work, and could you please provide a sample makefile instead?
-	I have too much math to explain, so there's no need for further details. Thanks :) !*/
