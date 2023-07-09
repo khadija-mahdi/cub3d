@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rey_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 07:18:16 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/09 20:54:00 by moel-asr         ###   ########.fr       */
+/*   Updated: 2023/07/09 20:36:44 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	cast_single_ray(t_data *data, float ray_angle, int index)
 	get_directions(data->rays[index], ray_angle);
 	horizontal_ray(data, data->rays[index], ray_angle);
 	vertical_ray(data, data->rays[index], ray_angle);
-	if (data->rays[index]->ver_ray.distance < \
-		data->rays[index]->hor_ray.distance)
+	if (data->rays[index]->ver_ray.distance < data->rays[index]->hor_ray.distance)
 	{
 		data->rays[index]->wall_x = data->rays[index]->ver_ray.wall_x;
 		data->rays[index]->wall_y = data->rays[index]->ver_ray.wall_y;
@@ -45,8 +44,8 @@ unsigned int	get_img_color(t_data *data, t_img *img)
 	dst = NULL;
 	if (data->textures->offset_x >= 0 && data->textures->offset_x < 64
 		&& data->textures->offset_y >= 0 && data->textures->offset_y < 64)
-		dst = ((img->addr + (data->textures->offset_y * img->line_length + \
-			data->textures->offset_x * (img->bits_per_pixel / 8))));
+		dst = ((img->addr + (data->textures->offset_y * img->line_length
+					+ data->textures->offset_x * (img->bits_per_pixel / 8))));
 	if (!dst)
 		return (0xffffff);
 	return (*(unsigned int *)dst);
@@ -81,8 +80,8 @@ void	draw_cube(t_data *data, double start_pos, double end_pos, int i)
 	while (index < end_pos)
 	{
 		dis = index + (data->textures->hight_wall_text / 2) - (HEIGHT / 2);
-		data->textures->offset_y = dis * ((double)TILE_SIZE / \
-		data->textures->hight_wall_text);
+		data->textures->offset_y = dis * ((double)TILE_SIZE
+			/ data->textures->hight_wall_text);
 		color = get_directions_texture(data, i);
 		my_mlx_pixel_put(data->img, i, index, color);
 		index++;

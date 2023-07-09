@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures_imgs.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 01:02:51 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/09 20:51:27 by moel-asr         ###   ########.fr       */
+/*   Updated: 2023/07/09 03:55:11 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_img	*texture_image(t_data *data, char *path, t_textures *textures)
 {
-	t_img	*img;
+	t_img *img;
 
 	img = malloc(sizeof(t_img));
 	if (!img)
@@ -39,13 +39,9 @@ t_textures	*init_textures_images(t_data *data)
 	textures = malloc(sizeof(t_textures));
 	if (!textures)
 		exit_msg("Failed to allocate memory.", 1);
-	textures->texture_north = texture_image(data, \
-	data->map->textures_path[0], textures);
-	textures->texture_south = texture_image(data, \
-	data->map->textures_path[1], textures);
-	textures->texture_west = texture_image(data, \
-	data->map->textures_path[2], textures);
-	textures->texture_east = texture_image(data, \
-	data->map->textures_path[3], textures);
+	textures->texture_north = texture_image(data, data->map->textures_path[0], textures);
+	textures->texture_south = texture_image(data, data->map->textures_path[1],textures);
+	textures->texture_west = texture_image(data, data->map->textures_path[2], textures);
+	textures->texture_east = texture_image(data, data->map->textures_path[3],  textures);
 	return (textures);
 }

@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 09:57:18 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/09 22:30:31 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/07 23:44:55 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void			draw_3d_map(int i, t_data *data);
 void			draw_cube(t_data *data, double start, double end, int i);
 void			get_directions(t_rey *rays, double angle);
 void			cast_single_ray(t_data *data, float angle, int index);
-void			render(t_data *data);
 
 /*textures*/
 
