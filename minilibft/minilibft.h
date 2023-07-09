@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minilibft.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:35:08 by moel-asr          #+#    #+#             */
-/*   Updated: 2023/07/09 00:32:20 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/09 21:44:37 by moel-asr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ int			ft_strlen(const char *str);
 char		*ft_strstr(const char *str, const char *to_find);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_substr(char const *s, int start, int len);
-	
+
 #endif	

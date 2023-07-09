@@ -6,7 +6,7 @@
 /*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 18:05:03 by moel-asr          #+#    #+#             */
-/*   Updated: 2023/07/06 17:40:55 by moel-asr         ###   ########.fr       */
+/*   Updated: 2023/07/09 23:34:03 by moel-asr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	read_and_check_map(char **line, t_map_info *data, int fd)
 		free(*line);
 		*line = get_next_line(fd);
 		if (i < data->map_lines_num && is_whitespace(*line) == 0)
-			exit_msg("Error\nUnexpected whitespace found in the map\n", 1);
+			exit_msg("Error\n", 1);
 		if (ft_strlen(data->map[i - 1]) > data->width)
 			data->width = ft_strlen(data->map[i - 1]);
 		free(dup_line);
@@ -125,7 +125,7 @@ int	check_player_position(int *i, int *j, t_map_info *data)
 		(is_valid_character(data->map[(*i)][(*j) + 1])) || \
 		(is_valid_character(data->map[(*i) - 1][(*j)])) || \
 		(is_valid_character(data->map[(*i) + 1][(*j)])))
-		exit_msg("Error\nThe player position is not valid\n", 1);
+		exit_msg("Error\n", 1);
 	data->x = (*j);
 	data->y = (*i);
 	return (1);

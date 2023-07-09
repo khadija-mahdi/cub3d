@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:48:47 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/09 22:04:25 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/09 21:13:57 by moel-asr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	draw_line(struct s_data *data, int y_start, int x_start)
 	}
 }
 
-
 void	draw_player_pixels(t_data *data, int i, int j)
 {
 	int	x_start;
@@ -63,10 +62,11 @@ void	draw_player_pixels(t_data *data, int i, int j)
 
 void	draw_player(t_data *data)
 {
-
 	draw_player_pixels(data, (data->player.player_x),
 		data->player.player_y);
-	data->line.end_x = (data->player.player_x + cos(data->player.rotation_angle) * 500);
-	data->line.end_y = (data->player.player_y + sin(data->player.rotation_angle) * 500);
+	data->line.end_x = (data->player.player_x + \
+	cos(data->player.rotation_angle) * 500);
+	data->line.end_y = (data->player.player_y + \
+	sin(data->player.rotation_angle) * 500);
 	draw_line(data, data->player.player_y, data->player.player_x);
 }

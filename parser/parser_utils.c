@@ -6,7 +6,7 @@
 /*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 02:05:43 by moel-asr          #+#    #+#             */
-/*   Updated: 2023/07/06 17:39:18 by moel-asr         ###   ########.fr       */
+/*   Updated: 2023/07/09 23:31:51 by moel-asr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char	*str_space_trim(char *s)
 
 	if (!s)
 		return (NULL);
+	str = NULL;
 	back = ft_strlen(s) - 1;
 	while (back && ft_strchr(" ", s[back]))
 		back--;
