@@ -49,6 +49,7 @@ int	main(int argc, char **argv)
 	t_map_info	map;
 	t_data		*data;
 
+	data = NULL;
 	map.args = argc;
 	map.map_path = argv[1];
 	check_path_errors(&map);

@@ -73,7 +73,7 @@ void	cast_rays(t_data *data)
 		camera_len = (WIDTH / 2) / tan(data->fov / 2);
 		hight_wall_hit = (TILE_SIZE / data->rays[i]->distance) * camera_len;
 		data->textures->hight_wall_text = hight_wall_hit;
-		draw_3d_map(i, data, data->rays[i]);
+		draw_3d_map(i, data);
 		ray_angle += (data->fov / WIDTH);
 		free(data->rays[i]);
 		i++;

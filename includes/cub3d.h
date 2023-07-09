@@ -46,14 +46,14 @@ t_textures		*init_textures_images(t_data *data);
 void			horizontal_ray(t_data *data, t_rey *rays, double angle);
 void			vertical_ray(t_data *data, t_rey *rays, double angle);
 double			normalize_angle(double angle);
-void			draw_3d_map(int i, t_data *data, t_rey *rays);
+void			draw_3d_map(int i, t_data *data);
 void			draw_cube(t_data *data, double start, double end, int i);
 void			get_directions(t_rey *rays, double angle);
 void			cast_single_ray(t_data *data, float angle, int index);
 
 /*textures*/
 
-int				convert_color(t_data *dat, char **rgb);
+int				convert_color(char **rgb);
 unsigned int	get_directions_texture(t_data *data, int i);
 void			get_textures_path(struct s_map_info *data);
 

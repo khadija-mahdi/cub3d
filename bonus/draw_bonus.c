@@ -80,8 +80,6 @@ void	draw_player(t_data *data, char **new)
 {
 	int	i;
 	int	j;
-	int	scaler_width;
-	int	scaler_height;
 
 	j = 0;
 	while (new[j])

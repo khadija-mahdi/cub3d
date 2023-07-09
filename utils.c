@@ -42,11 +42,12 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 
 int	exit_program(int key_code)
 {
+	(void)key_code;
 	exit_msg("Exit the program with the X !!", 0);
 	return (0);
 }
 
-int	convert_color(t_data *dat, char **rgb)
+int	convert_color(char **rgb)
 {
 	unsigned char	red;
 	unsigned char	green;

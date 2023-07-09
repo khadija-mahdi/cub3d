@@ -14,6 +14,8 @@
 
 int	handle_mouse_click(int button, int x, int y, struct s_data *data)
 {
+	(void)x;
+	(void)y;
 	if (button == LEFT_CLICK || button == RIGHT_CLICK)
 		data->dir_mouse[0] = button;
 	return (0);
@@ -21,6 +23,8 @@ int	handle_mouse_click(int button, int x, int y, struct s_data *data)
 
 int	release_mouse(int button, int x, int y, struct s_data *data)
 {
+	(void)x;
+	(void)y;
 	if (button == LEFT_CLICK || button == RIGHT_CLICK)
 		data->dir_mouse[0] = 0;
 	return (0);
@@ -30,7 +34,6 @@ void	render_mini_map(t_data *data)
 {
 	char	**new;
 
-	new = new;
 	data->scaler_hight = 0.25;
 	data->scaler_width = 0.25;
 	new = data->map->map;
@@ -71,7 +74,7 @@ void	cast_rays_bonus(t_data *data)
 		camera_len = (WIDTH / 2) / tan(data->fov / 2);
 		hight_wall_hit = (TILE_SIZE / data->rays[i]->distance) * camera_len;
 		data->textures->hight_wall_text = hight_wall_hit;
-		draw_3d_map(i, data, data->rays[i]);
+		draw_3d_map(i, data);
 		ray_angle += (data->fov / WIDTH);
 		i++;
 	}
