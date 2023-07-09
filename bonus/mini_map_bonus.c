@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:10:35 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/06 17:24:29 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/09 06:00:01 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	draw_wall(t_data *data, int i, int j, int clr)
 	int	y;
 	int	x;
 
-	x_start = i * TILE_SIZE - 1;
-	y_start = j * TILE_SIZE - 1;
+	x_start = i * TILE_SIZE;
+	y_start = j * TILE_SIZE;
 	y = y_start;
-	while (y < y_start + TILE_SIZE - 1)
+	while (y < y_start + TILE_SIZE)
 	{
 		x = x_start;
-		while (x < x_start + TILE_SIZE - 1)
+		while (x < x_start + TILE_SIZE)
 		{
 			my_mlx_pixel_put(data->img, (x * data->scaler_width), (y
 					* data->scaler_hight), clr);
@@ -46,11 +46,26 @@ void	draw_walls(t_data *data, int clr, char **new)
 		i = 0;
 		while (new[j][i])
 		{
-			draw_wall(data, i, j, WHITE);
 			if (new[j][i] == '1')
 				draw_wall(data, i, j, clr);
 			i++;
 		}
 		j++;
+	}
+}
+
+void cube(t_img *img, int x, int y, int size, int color)
+{
+	int i = (x - (size/2));
+	int j;
+	while(i < (x + (size/2)))
+	{
+		j = (y - (size/2));
+		while (j < (y + (size / 2)))
+		{
+			my_mlx_pixel_put(img, i, j, color);
+			j++;
+		}
+		i++;	
 	}
 }

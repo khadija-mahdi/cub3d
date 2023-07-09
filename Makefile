@@ -6,7 +6,7 @@
 #    By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 02:03:16 by moel-asr          #+#    #+#              #
-#    Updated: 2023/07/09 00:43:47 by kmahdi           ###   ########.fr        #
+#    Updated: 2023/07/09 05:29:24 by kmahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,11 +65,11 @@ OBJ_BONUS= $(patsubst %.c,$(OBJ_DIR_BONUS)/%.o,$(BONUS_SRS))
 
 CC = cc
 
-CFLAGS=  -Wall -Wextra -Werror 
+CFLAGS=#  -Wall -Wextra -Werror 
 
-MLX= -lmlx -framework OpenGL -framework AppKit
+MLX = -lm -lmlx -framework OpenGL -framework AppKit
 
-#DIB= -fsanitize=address -g3
+# DIB= -fsanitize=address -g3
 
 $(RM) = rm -f 
   

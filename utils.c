@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:59:00 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/06 07:20:27 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/09 03:46:42 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	free_list(char **list)
 	int	i;
 
 	i = 0;
-	while (list[i])
+	while (list && list[i])
 		free(list[i++]);
 	free(list);
 }

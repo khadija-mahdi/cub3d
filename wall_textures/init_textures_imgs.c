@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 01:02:51 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/09 00:39:44 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/09 03:55:11 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_img	*texture_image(t_data *data, char *path, t_textures *textures)
 	img->img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, path,
 			&textures->block_size_x, &textures->block_size_y);
 	if (!img->img_ptr)
-		exit_msg("Failed to load image.", 1);
+		exit_msg("Failed to load image. path : ", 1);
 	img->addr = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
 	if (!img->addr)

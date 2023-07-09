@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 18:39:49 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/07 23:45:23 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/09 06:13:46 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,8 @@ int	release_mouse(int button, int x, int y, struct s_data *data)
 
 void	render_mini_map(t_data *data)
 {
-	char	**new;
-
 	data->scaler_hight = 0.25;
 	data->scaler_width = 0.25;
-	new = data->map->map;
 	if (((data->map->height * TILE_SIZE) * 0.25 >= HEIGHT / 2
 			&& (data->map->height * TILE_SIZE) * 0.25 <= HEIGHT)
 		|| ((data->map->width * TILE_SIZE) * 0.25 >= WIDTH / 2
@@ -45,14 +42,15 @@ void	render_mini_map(t_data *data)
 		data->scaler_width = 0.1;
 		data->scaler_hight = 0.1;
 	}
-	else if ((data->map->height * TILE_SIZE) * 0.25 > HEIGHT)
+	else if ((data->map->height * TILE_SIZE) * 0.25 > HEIGHT || (data->map->width * TILE_SIZE) * 0.25 > WIDTH)
 	{
-		data->scaler_width = 0.06;
-		data->scaler_hight = 0.06;
+		data->scaler_width = ((double)WIDTH / 8) / (double)(data->map->width * TILE_SIZE)	;
+		data->scaler_hight = ((double)HEIGHT / 4) / (double)(data->map->height * TILE_SIZE);
 	}
-	draw_walls(data, DARK_CYAN, new);
-	draw_player(data, new);
+	draw_walls(data, DARK_CYAN, data->map->map);
+	draw_player(data, data->map->map);
 }
+
 
 void	cast_rays_bonus(t_data *data)
 {
@@ -76,6 +74,7 @@ void	cast_rays_bonus(t_data *data)
 		data->textures->hight_wall_text = hight_wall_hit;
 		draw_3d_map(i, data);
 		ray_angle += (data->fov / WIDTH);
+		free(data->rays[i]);
 		i++;
 	}
 }
