@@ -6,7 +6,7 @@
 #    By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 02:03:16 by moel-asr          #+#    #+#              #
-#    Updated: 2023/07/09 23:16:33 by moel-asr         ###   ########.fr        #
+#    Updated: 2023/07/10 00:59:44 by moel-asr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM = rm
 
 CC = cc
 
-CFLAGS =  -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS =  -Wall -Wextra -Werror
 
 MLX = -lmlx -framework OpenGL -framework AppKit
 

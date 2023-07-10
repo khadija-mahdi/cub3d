@@ -6,7 +6,7 @@
 /*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 18:05:03 by moel-asr          #+#    #+#             */
-/*   Updated: 2023/07/10 00:52:00 by moel-asr         ###   ########.fr       */
+/*   Updated: 2023/07/10 01:00:58 by moel-asr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,10 @@ void	read_and_check_map(char **line, t_map_info *data, int fd)
 			j++;
 		}
 		data->map[i][j] = '\0';
+		free(x[i]);
 		i++;
 	}
+	free(x);
 	if (*line)
 		free(*line);
 }
