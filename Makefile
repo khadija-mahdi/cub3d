@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+         #
+#    By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 02:03:16 by moel-asr          #+#    #+#              #
-#    Updated: 2023/07/10 00:59:44 by moel-asr         ###   ########.fr        #
+#    Updated: 2023/07/10 02:45:33 by kmahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,16 +41,13 @@ SRCS = main.c\
 	./wall_textures/init_textures_imgs.c\
 	./rey_casting.c\
 
-BONUS_SRCS = ./bonus/mini_map_bonus.c\
-			./parser/parse_colors.c \
+BONUS_SRCS =./parser/parse_colors.c \
 			./parser/parse_map.c \
 			./parser/parse_path_and_map.c \
 			./parser/parse_texture_utils.c \
 			./parser/parser_utils.c \
 			./parser/parse_texture.c \
 			./bonus/main_bonus.c\
-			./bonus/collision_bonus.c\
-			./bonus/draw_bonus.c\
 			./bonus/player_movement_bonus.c\
 			./bonus/wall_casting_bonus.c\
 			./get_next_line/get_next_line.c \

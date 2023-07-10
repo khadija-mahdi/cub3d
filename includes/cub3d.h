@@ -6,7 +6,7 @@
 /*   By: kmahdi <kmahdi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 09:57:18 by kmahdi            #+#    #+#             */
-/*   Updated: 2023/07/09 22:30:31 by kmahdi           ###   ########.fr       */
+/*   Updated: 2023/07/10 01:12:53 by kmahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void			exit_msg(char *msg, int status);
 
 /*mlx */
 int				exit_program(int key_code);
-void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void			mlx_put_pixel_to_img(t_img *img, int x, int y, int color);
 
 /*initialize main struct */
 t_data			*init_data(t_data *data, struct s_map_info *map);
