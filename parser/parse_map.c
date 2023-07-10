@@ -6,7 +6,7 @@
 /*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 18:05:03 by moel-asr          #+#    #+#             */
-/*   Updated: 2023/07/10 01:00:58 by moel-asr         ###   ########.fr       */
+/*   Updated: 2023/07/10 03:06:26 by moel-asr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,11 @@ void	count_map_lines(t_map_info *data)
 void	read_and_check_map(char **line, t_map_info *data, int fd)
 {
 	int		i;
-	int		j;
 	char	*dup_line;
-	char	**x;
 
 	i = 0;
 	data->width = 0;
-	x = (char **)malloc(sizeof(char *) * (data->map_lines_num + 1));
+	data->util_map = malloc(sizeof(char *) * (data->map_lines_num + 1));
 	while (is_whitespace(*line) == 0)
 	{
 		free(*line);
@@ -52,45 +50,15 @@ void	read_and_check_map(char **line, t_map_info *data, int fd)
 	while (i < data->map_lines_num)
 	{
 		dup_line = ft_strdup(*line);
-		x[i++] = str_space_trim(dup_line);
+		data->util_map[i++] = str_space_trim(dup_line);
 		free(*line);
 		*line = get_next_line(fd);
 		if (i < data->map_lines_num && is_whitespace(*line) == 0)
 			exit_msg("Error\n", 1);
 		free(dup_line);
 	}
-	x[i] = NULL;
-	i = 0;
-	while (i < data->map_lines_num)
-	{
-		if (ft_strlen(x[i]) > data->width)
-			data->width = ft_strlen(x[i]);
-		i++;
-	}
-	i = 0;
-	while (i < data->map_lines_num)
-	{
-		data->map[i] = (char *)malloc(sizeof(char) * (data->width + 1));
-		i++;
-	}
-	data->map[i] = NULL;
-	i = 0;
-	while (i < data->map_lines_num)
-	{
-		j = 0;
-		while (j < data->width)
-		{
-			if (j < ft_strlen(x[i]))
-				data->map[i][j] = x[i][j];
-			else
-				data->map[i][j] = '#';
-			j++;
-		}
-		data->map[i][j] = '\0';
-		free(x[i]);
-		i++;
-	}
-	free(x);
+	data->util_map[i] = NULL;
+	read_and_check_map_util(data);
 	if (*line)
 		free(*line);
 }

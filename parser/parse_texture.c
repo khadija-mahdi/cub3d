@@ -6,7 +6,7 @@
 /*   By: moel-asr <moel-asr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 10:33:07 by moel-asr          #+#    #+#             */
-/*   Updated: 2023/07/10 00:57:44 by moel-asr         ###   ########.fr       */
+/*   Updated: 2023/07/10 02:52:30 by moel-asr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ void	get_textures_path(t_map_info *data)
 
 	x = 0;
 	i = -1;
-	n = NULL;
 	data->textures_path = malloc(sizeof(char *) * 5);
 	while (data->textures && data->textures[++i])
 	{
@@ -116,8 +115,8 @@ void	get_textures_path(t_map_info *data)
 		{
 			if (data->textures[i][j] == '.')
 			{
-				n = ft_substr(data->textures[i], j,
-						ft_strlen(data->textures[i]));
+				n = ft_substr(data->textures[i], j, \
+					ft_strlen(data->textures[i]));
 				data->textures_path[x++] = ft_strdup(n);
 				free(n);
 				break ;
